@@ -1,4 +1,5 @@
 dalgo_project
 =============
+Autoren: Sven Herrmann, Jonas Klug
 
-matlab aufgabe, die wetterdaten aus dem internet lädt und grafisch darstellt
+Matlabaufgabe, die Wetterdaten aus dem Internet lädt und grafisch darstellt.
