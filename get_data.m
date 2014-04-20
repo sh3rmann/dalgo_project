@@ -1,4 +1,4 @@
-% function [out_param] = get_data()
+% function [temp, cloud, prec] = get_data()
 % function to do something usefull (fill out)
 % Usage [out_param] = get_data(in_param)
 % Input Parameter:
@@ -30,15 +30,34 @@ name = content_st.children{1,1}.name;
 date = content_st.children{1}.children{1}.children{1,1}.attributes.from(1:10);
 
 temp = cell(1,3);
+cloud = cell(1,3);
+prec = cell(1,3);
 
-counter = 1;
+counter1 = 1;
+counter2 = 1;
 
 for kk = 1:length(content_st.children{1}.children{2}.children)
+    
     if strcmp(content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.name,'temperature');
-    temp(counter,1) = {content_st.children{1}.children{2}.children{kk}.attributes.from};
-    temp(counter,2) = {content_st.children{1}.children{2}.children{kk}.attributes.to};
-    temp(counter,3) = {content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.attributes.value};
-    counter = counter + 1;
+        
+        temp(counter1,1) = {content_st.children{1}.children{2}.children{kk}.attributes.from};
+        temp(counter1,2) = {content_st.children{1}.children{2}.children{kk}.attributes.to};
+        temp(counter1,3) = {content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.attributes.value};
+
+        cloud (counter1,1) = {content_st.children{1}.children{2}.children{kk}.attributes.from};
+        cloud (counter1,2) = {content_st.children{1}.children{2}.children{kk}.attributes.to};
+        cloud (counter1,3) = {content_st.children{1}.children{2}.children{kk}.children{1}.children{6}.attributes.percent};
+
+        counter1 = counter1 + 1;
+    end
+    
+    if strcmp(content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.name,'precipitation');
+        
+        prec(counter2,1) = {content_st.children{1}.children{2}.children{kk}.attributes.from};
+        prec(counter2,2) = {content_st.children{1}.children{2}.children{kk}.attributes.to};
+        prec(counter2,3) = {content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.attributes.value};
+        
+        counter2 = counter2 + 1;
     end
 end   
 
