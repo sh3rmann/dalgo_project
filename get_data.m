@@ -1,4 +1,4 @@
-% function [temp, cloud, prec] = get_data()
+% function [temp_min_max, cloud, prec] = get_data()
 % function to do something usefull (fill out)
 % Usage [out_param] = get_data(in_param)
 % Input Parameter:
@@ -25,10 +25,11 @@ content_java = xmlread('data.xml');
 % Matlab-Struktur
 content_st = parse_xml(content_java);
 
-name = content_st.children{1,1}.name;
-
+% Auslesen des Abrufdatums
 date = content_st.children{1}.children{1}.children{1,1}.attributes.from(1:10);
 
+% Erstellen von cell-arrays, in denen die entsprechenden Daten gespeichert
+% werden. Zudem werden zwei counter erstellt
 temp = cell(1,3);
 cloud = cell(1,3);
 prec = cell(1,3);
@@ -36,6 +37,9 @@ prec = cell(1,3);
 counter1 = 1;
 counter2 = 1;
 
+% Zählschleife, in der die Temperatur, die Bewölkung und der Niederschlag
+% aus der Struktur content_st herausgesucht werden in den dazugehörigen
+% cell-arrays (temp, cloud, prec) gespeichert werden
 for kk = 1:length(content_st.children{1}.children{2}.children)
     
     if strcmp(content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.name,'temperature');
@@ -60,6 +64,55 @@ for kk = 1:length(content_st.children{1}.children{2}.children)
         counter2 = counter2 + 1;
     end
 end   
+
+% Heraussuchen aller Daten (Plural von Datum!)aus dem Temperatur cell-array
+datum_full = regexp(temp,'[0-9]+-[0-9]+-[0-9]+','match');
+
+% Erstellen eines neuen cell-arrays, in den die herausgesuchten Daten 
+% geschrieben werden können. 
+datum = cell(1);
+
+% Umschreiben der Daten. Dies ist notwendig, da der Befehl "regexp" alle 
+% gesuchten Daten (chars)in einen zusätzlichen 1x1 cell-array schreibt. 
+% Dieser wird hier entfernt
+for kk = 1:length(datum_full)
+    datum(kk) = datum_full{kk};
+end
+
+% Alle doppelten Daten werden hier entfernt
+datum = unique(datum);
+
+% Schleife, die alle einstelligen Temperaturwerte mit einer Null ergänzt.
+% Dies ist notwendig, um die im cell-array gespeicherten Daten später in 
+% eine Matrix wandeln zu können (cell2mat)
+for kk = 1:length(temp(:,3))
+    if length(temp{kk,3})<4
+       temp{kk,3} = ['0',temp{kk,3}];
+    end
+end
+
+% Erstellen eines neuen cell-arrays, in den die Minimal-, die 
+% Maximaltemperatur und das Datum der nächsten 10 Tage gespeichert werden 
+temp_min_max = cell(length(datum),3);
+
+% Schleife, in der die Temperaturdaten von jedem Datum (datum) 
+% herausgesucht werden. Anschließend werden diese in eine Matrix und von 
+% dort aus in Zahlen gewandelt. Von jedem Tag wird dann die Minimal- und
+% die Maximaltemperatur bestimmt und zusammen mit dem entsprechendem Datum
+% gespeichert.
+for kk = 1:length(datum)
+    
+    row1 = ~cellfun(@isempty, regexp(temp(:,1), datum(kk)));
+    row2 = find(row1 == 1);
+    temp_all1 = cell2mat(temp(row2,3)); 
+    temp_all2 = str2num(temp_all1);
+    temp_min = min(temp_all2);
+    temp_max = max(temp_all2);
+    temp_min_max{kk,1} = datum{kk}; 
+    temp_min_max{kk,2} = temp_min;
+    temp_min_max{kk,3} = temp_max;
+    
+end
 
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug
