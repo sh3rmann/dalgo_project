@@ -14,12 +14,33 @@
 % Ver. 0.01 initial create     14-Apr-2014  Initials (SH,JK)
 
 %------------Your function implementation here--------------------------- 
+
+% Herunterladen der Wetterdaten aus dem Internet
 url_path = urlwrite ('http://api.met.no/weatherapi/locationforecast/1.8/?lat=53.143889;lon=8.213889','data.xml');
 
-content_ja = xmlread('data.xml');
+% Einlesen der xml - Datei als Java Object
+content_java = xmlread('data.xml');
 
-content_st = parse_xml(content);
+% Aufruf der Funktion "parse_xml" zur Umwandlung des Java Objektes in eine 
+% Matlab-Struktur
+content_st = parse_xml(content_java);
 
+name = content_st.children{1,1}.name;
+
+date = content_st.children{1}.children{1}.children{1,1}.attributes.from(1:10);
+
+temp = cell(1,3);
+
+counter = 1;
+
+for kk = 1:length(content_st.children{1}.children{2}.children)
+    if strcmp(content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.name,'temperature');
+    temp(counter,1) = {content_st.children{1}.children{2}.children{kk}.attributes.from};
+    temp(counter,2) = {content_st.children{1}.children{2}.children{kk}.attributes.to};
+    temp(counter,3) = {content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.attributes.value};
+    counter = counter + 1;
+    end
+end   
 
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug
