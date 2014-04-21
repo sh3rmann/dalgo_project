@@ -26,24 +26,75 @@ set(figure_handle,'ToolBar','none');
 set(figure_handle,'MenuBar','none');
 set(figure_handle,'Color',[1 1 1 ]);
 
-h1 = subplot(1,5,1);
-axis off;
-h1_text = uicontrol('style','text');
-set(h1_text,'units','normalized');
-set(h1_text,'position',[0.04 0.87 0.15 0.075]);
-set(h1_text,'BackgroundColor',[1 1 1]);
-set(h1_text,'FontName','Comic Sans MS')
-set(h1_text,'FontSize',20);
-set(h1_text,'string',temp{1,1});
+h1_text1 = uicontrol('style','text');
+set(h1_text1,'units','normalized');
+set(h1_text1,'position',[0.04 0.87 0.15 0.075]);
+set(h1_text1,'BackgroundColor',[1 1 1]);
+set(h1_text1,'FontName','Comic Sans MS')
+set(h1_text1,'FontSize',20);
+set(h1_text1,'string',temp{1,1});
 
 thermo = imread('thermometer.jpg');
-axes('Position', [0.04 0.7 0.03 0.13]); 
+axes('Position', [0.04 0.6 0.03 0.15]); 
 image(thermo);
 axis image;
 axis off;
 
-% x = figure(2);
-% set(x,'units','normalized');
+h1_text2 = uicontrol('style','text');
+set(h1_text2,'units','normalized');
+set(h1_text2,'position',[0.09 0.67 0.1 0.07]);
+set(h1_text2,'BackgroundColor',[1 1 1]);
+set(h1_text2,'FontName','Arial')
+set(h1_text2,'FontSize',22);
+set(h1_text2,'ForegroundColor',[1 0 0]);
+h1_value1 = num2str(temp{1,3});
+h1_value1 = [h1_value1,'°'];
+set(h1_text2,'string',h1_value1);
+
+h1_text3 = uicontrol('style','text');
+set(h1_text3,'units','normalized');
+set(h1_text3,'position',[0.09 0.6 0.1 0.07]);
+set(h1_text3,'BackgroundColor',[1 1 1]);
+set(h1_text3,'FontName','Arial')
+set(h1_text3,'FontSize',22);
+set(h1_text3,'ForegroundColor',[0 1 0]);
+h1_value2 = num2str(temp{1,2});
+h1_value2 = [h1_value2,'°'];
+set(h1_text3,'string',h1_value2);
+
+h1_value3 = round(cloud{1,2});
+if h1_value3 >= 0 && h1_value3 < 25
+   wolke = imread('wolke1.jpg');
+   font_color = [1 0.8 0];
+end
+if h1_value3 >= 25 && h1_value3 < 50
+   wolke = imread('wolke2.jpg');
+   font_color = [1 0.35 0];
+end
+if h1_value3 >= 50 && h1_value3 < 75
+   wolke = imread('wolke3.jpg');
+   font_color = [0 0.5 1];
+end
+if h1_value3 >= 75 && h1_value3 <= 100
+   wolke = imread('wolke4.jpg');
+   font_color = [0 0 1];
+end
+
+axes('Position', [0.04 0.38 0.1 0.15]); 
+image(wolke);
+axis image;
+axis off;
+
+h1_text4 = uicontrol('style','text');
+set(h1_text4,'units','normalized');
+set(h1_text4,'position',[0.04 0.3 0.1 0.065]);
+set(h1_text4,'BackgroundColor',[1 1 1]);
+set(h1_text4,'FontName','Arial')
+set(h1_text4,'FontSize',22);
+set(h1_text4,'ForegroundColor',font_color);
+h1_value3 = num2str(h1_value3);
+h1_value3 = [h1_value3,'%'];
+set(h1_text4,'string',h1_value3);
 
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug
