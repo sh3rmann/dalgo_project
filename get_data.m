@@ -1,4 +1,4 @@
-% function [temp_min_max, cloud_mean, prec_mean] = get_data()
+function [temp_min_max, cloud_mean, prec_mean] = get_data()
 % function to do something usefull (fill out)
 % Usage [out_param] = get_data(in_param)
 % Input Parameter:
@@ -24,9 +24,6 @@ content_java = xmlread('data.xml');
 % Aufruf der Funktion "parse_xml" zur Umwandlung des Java Objektes in eine 
 % Matlab-Struktur
 content_st = parse_xml(content_java);
-
-% Auslesen des Abrufdatums
-date = content_st.children{1}.children{1}.children{1,1}.attributes.from(1:10);
 
 % Erstellen von cell-arrays, in denen die entsprechenden Daten gespeichert
 % werden. Zudem werden zwei counter erstellt
@@ -65,22 +62,30 @@ for kk = 1:length(content_st.children{1}.children{2}.children)
     end
 end   
 
-% Heraussuchen aller Daten (Plural von Datum!)aus dem Temperatur cell-array 
+% Heraussuchen aller Daten (Plural von Datum!)aus dem Temperatur-/ bzw. 
+% Niederschlags cell-array 
 datum_full1 = regexp(temp,'[0-9]+-[0-9]+-[0-9]+','match');
+datum_full2 = regexp(prec,'[0-9]+-[0-9]+-[0-9]+','match');
 
 % Erstellen eines neuen cell-arrays, in den die herausgesuchten Daten 
 % geschrieben werden können. 
-datum = cell(1);
+datum1 = cell(1);
+datum2 = cell(1);
 
 % Umschreiben der Daten. Dies ist notwendig, da der Befehl "regexp" alle 
 % gesuchten Daten (chars)in einen zusätzlichen 1x1 cell-array schreibt. 
 % Dieser wird hier entfernt
 for kk = 1:length(datum_full1)
-    datum(kk) = datum_full1{kk};
+    datum1(kk) = datum_full1{kk};
+end
+
+for kk = 1:length(datum_full2)
+    datum2(kk) = datum_full2{kk};
 end
 
 % Alle doppelten Daten werden hier entfernt
-datum = unique(datum);
+datum1 = unique(datum1);
+datum2 = unique(datum2);
 
 % Schleife, die alle einstelligen Temperatur-/Bewölkungswerte mit einer 
 % Null ergänzt. Dies ist notwendig, um die im cell-array gespeicherten 
@@ -99,20 +104,20 @@ end
 
 % Erstellen eines neuen cell-arrays, in den die Minimal-, die 
 % Maximaltemperatur und das Datum der nächsten 10 Tage gespeichert werden 
-temp_min_max = cell(length(datum),3);
+temp_min_max = cell(length(datum1),3);
 
 % Erstellen eines neuen cell-arrays, in den der mittlere Bewölkungswert und
 % das Datum der nächsten 10 Tage gespeichert wird
-cloud_mean = cell(length(datum),2);
+cloud_mean = cell(length(datum1),2);
 
 % Schleife, in der die Temperatur-/ Bewölkungsdaten von jedem Datum  
 % herausgesucht werden. Anschließend werden diese in eine Matrix und von 
 % dort aus in Zahlen gewandelt. Von jedem Tag wird dann die Minimal-/
 % Maximaltemperatur und der mittlere Bewölkungswert bestimmt und zusammen
 % mit dem entsprechendem Datum gespeichert.
-for kk = 1:length(datum)
+for kk = 1:length(datum1)
     
-    row1 = ~cellfun(@isempty, regexp(temp(:,1), datum(kk)));
+    row1 = ~cellfun(@isempty, regexp(temp(:,1), datum1(kk)));
     row2 = find(row1 == 1);
     
     temp_all1 = cell2mat(temp(row2,3)); 
@@ -124,17 +129,17 @@ for kk = 1:length(datum)
     temp_max = max(temp_all2);
     cloud_mean_day = mean(cloud_all2); 
     
-    temp_min_max{kk,1} = datum{kk}; 
+    temp_min_max{kk,1} = datum1{kk}; 
     temp_min_max{kk,2} = temp_min;
     temp_min_max{kk,3} = temp_max;
-    cloud_mean{kk,1} = datum{kk};
+    cloud_mean{kk,1} = datum1{kk};
     cloud_mean{kk,2} = cloud_mean_day;
     
 end
 
 % Erstellen eines neuen cell-arrays, in den der mittlere Niederschlagswert
 % und das Datum der nächsten 10 Tage gespeichert wird 
-prec_mean = cell(length(datum),2);
+prec_mean = cell(length(datum2),2);
 
 % Schleife, in der alle Niederschlagswerte pro Tag herausgesucht werden.
 % Anschließend werden diese in eine Matrix und von dort aus in Zahlen 
@@ -146,9 +151,9 @@ prec_mean = cell(length(datum),2);
 % jeweiligen Tagen andere Zeilenangaben benötigt. Um die Übersichtlichkeit
 % zu wahren, findet dieser Arbeitsschritt in einer gesonderten 
 % Schleife statt
-for kk = 1:length(datum)
+for kk = 1:length(datum2)
     
-    row1 = ~cellfun(@isempty, regexp(prec(:,1), datum(kk)));
+    row1 = ~cellfun(@isempty, regexp(prec(:,1), datum2(kk)));
     row2 = find(row1 == 1);
     
     prec_all1 = cell2mat(prec(row2,3));
@@ -156,7 +161,7 @@ for kk = 1:length(datum)
     
     prec_mean_day = mean(prec_all2);
     
-    prec_mean{kk,1} = datum{kk};
+    prec_mean{kk,1} = datum2{kk};
     prec_mean{kk,2} = prec_mean_day;
 
 end
