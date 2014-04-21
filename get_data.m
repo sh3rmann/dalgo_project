@@ -1,22 +1,24 @@
 function [temp_min_max, cloud_mean, prec_mean] = get_data()
-% function to do something usefull (fill out)
-% Usage [out_param] = get_data(in_param)
-% Input Parameter:
-%	 in_param: 		 Explain the parameter, default values, and units
+% function to do load weather data´s from internet
+% Usage [temp_min_max, cloud_mean, prec_mean] = get_data()
 % Output Parameter:
-%	 out_param: 	 Explain the parameter, default values, and units
+%        temp_min_max: cell-array with the minimal and maximal temperature
+%                      for the next ten days
+%        cloud_mean:   cell-array with the mean cloudyness for the next ten
+%                      days
+%        prec_mean:    cell-array with the mean precipitation for the next
+%                      ten days
 %------------------------------------------------------------------------ 
-% Example: Provide example here if applicable (one or two lines) 
-
 % Author: S.Herrmann, J.Klug (c) TGM @ Jade Hochschule applied licence see 
 % EOF 
 % Version History:
-% Ver. 0.01 initial create     14-Apr-2014  Initials (SH,JK)
-
+% Ver. 0.01                  14-Apr-2014                 Initials (SH,JK)
+% Ver. 1.0                   20-Apr-2014                 Initials (SH,JK)
+%
 %------------Your function implementation here--------------------------- 
 
 % Herunterladen der Wetterdaten aus dem Internet
-url_path = urlwrite ('http://api.met.no/weatherapi/locationforecast/1.8/?lat=53.143889;lon=8.213889','data.xml');
+urlwrite ('http://api.met.no/weatherapi/locationforecast/1.8/?lat=53.143889;lon=8.213889','data.xml');
 
 % Einlesen der xml - Datei als Java Object
 content_java = xmlread('data.xml');
