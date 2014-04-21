@@ -1,4 +1,4 @@
- function [] = built_figure(temp, cloud, prec)
+ function [x] = built_figure(temp, cloud, prec)
 % function to built a figure and show weather forecast grafically
 % Usage [] = built_figure(temp, cloud, prec)
 % Input Parameter:
@@ -40,14 +40,15 @@ axis off;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Tag 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Datum
+% Wochentag
+[num1,name1] = weekday(temp{1,1},'local','long');
 h1_text1 = uicontrol('style','text');
 set(h1_text1,'units','normalized');
 set(h1_text1,'position',[0.02 0.87 0.16 0.075]);
 set(h1_text1,'BackgroundColor',[1 1 1]);
 set(h1_text1,'FontName','Comic Sans MS');
 set(h1_text1,'FontSize',20);
-set(h1_text1,'string',temp{1,1});
+set(h1_text1,'string',name1);
 
 % Thermometerbild, anhängig von der Maximaltemperatur
 h1_value1 = temp{1,3};
@@ -146,14 +147,15 @@ set(h1_text5,'string',h1_value4);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Tag 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Datum
+% Wochentag
+[num2,name2] = weekday(temp{2,1},'local','long');
 h2_text1 = uicontrol('style','text');
 set(h2_text1,'units','normalized');
 set(h2_text1,'position',[0.22 0.87 0.16 0.075]);
 set(h2_text1,'BackgroundColor',[1 1 1]);
 set(h2_text1,'FontName','Comic Sans MS');
 set(h2_text1,'FontSize',20);
-set(h2_text1,'string',temp{2,1});
+set(h2_text1,'string',name2);
 
 % Thermometerbild, anhängig von der Maximaltemperatur
 h2_value1 = temp{2,3};
@@ -252,14 +254,15 @@ set(h2_text5,'string',h2_value4);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Tag 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Datum
+% Wochentag
+[num3,name3] = weekday(temp{3,1},'local','long');
 h3_text1 = uicontrol('style','text');
 set(h3_text1,'units','normalized');
 set(h3_text1,'position',[0.42 0.87 0.16 0.075]);
 set(h3_text1,'BackgroundColor',[1 1 1]);
 set(h3_text1,'FontName','Comic Sans MS');
 set(h3_text1,'FontSize',20);
-set(h3_text1,'string',temp{3,1});
+set(h3_text1,'string',name3);
 
 % Thermometerbild, anhängig von der Maximaltemperatur
 h3_value1 = temp{3,3};
@@ -358,14 +361,15 @@ set(h3_text5,'string',h3_value4);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Tag 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Datum
+% Wochentag
+[num4,name4] = weekday(temp{4,1},'local','long');
 h4_text1 = uicontrol('style','text');
 set(h4_text1,'units','normalized');
 set(h4_text1,'position',[0.62 0.87 0.16 0.075]);
 set(h4_text1,'BackgroundColor',[1 1 1]);
 set(h4_text1,'FontName','Comic Sans MS');
 set(h4_text1,'FontSize',20);
-set(h4_text1,'string',temp{4,1});
+set(h4_text1,'string',name4);
 
 % Thermometerbild, anhängig von der Maximaltemperatur
 h4_value1 = temp{4,3};
@@ -464,14 +468,15 @@ set(h4_text5,'string',h4_value4);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Tag 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Datum
+% Wochentag
+[num5,name5] = weekday(temp{5,1},'local','long');
 h5_text1 = uicontrol('style','text');
 set(h5_text1,'units','normalized');
 set(h5_text1,'position',[0.82 0.87 0.16 0.075]);
 set(h5_text1,'BackgroundColor',[1 1 1]);
 set(h5_text1,'FontName','Comic Sans MS');
 set(h5_text1,'FontSize',20);
-set(h5_text1,'string',temp{5,1});
+set(h5_text1,'string',name5);
 
 % Thermometerbild, anhängig von der Maximaltemperatur
 h5_value1 = temp{5,3};
