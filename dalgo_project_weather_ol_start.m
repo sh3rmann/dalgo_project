@@ -2,7 +2,8 @@
 % Author: S.Herrmann, J.Klug (c) IHA @ Jade Hochschule applied licence see 
 % EOF 
 % Version History:
-% Ver. 0.01 initial create      14-Apr-2014 			   Initials (SH,JK)
+% Ver. 0.01                   14-Apr-2014 			   Initials (SH,JK)
+% Ver. 1.00                   21-Apr-2014 			   Initials (SH,JK)
 
 clear;
 close all;
@@ -10,8 +11,9 @@ clc;
 
 %------------Your script starts here-------- 
 
+[temp, cloud, prec] = get_data();
 
-
+built_figure(temp, cloud, prec);
 
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug
