@@ -17,12 +17,9 @@
 
 % Erstellen der figure 
 figure_handle = figure();
-set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle','off');
-set(figure_handle,'units','normalized');
-set(figure_handle,'position',[0.1691 0.1302 0.6991 0.7122]);
-set(figure_handle,'ToolBar','none');
-set(figure_handle,'MenuBar','none');
-set(figure_handle,'Color',[1 1 1 ]);
+set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle',...
+   'off','units','normalized','position',[0.1691 0.1302 0.6991 0.7122],...
+   'ToolBar','none','MenuBar','none','Color',[1 1 1 ]);
 
 set(gca,'position',[0 0 1 1]);    
 plot([0.05 0.95],[0.836 0.836],'k:');
@@ -41,24 +38,21 @@ position_counter = 0.02;
 
 for kk = 1:5
 % Wochentag
-[num1,name1] = weekday(temp{kk,1},'local','long');
-h1_text1 = uicontrol('style','text');
-set(h1_text1,'units','normalized');
-set(h1_text1,'position',[position_counter 0.87 0.16 0.075]);
-set(h1_text1,'BackgroundColor',[1 1 1]);
-set(h1_text1,'FontName','Comic Sans MS');
-set(h1_text1,'FontSize',20);
-set(h1_text1,'string',name1);
+[num,name] = weekday(temp{kk,1},'local','long');
+h_text1 = uicontrol('style','text');
+set(h_text1,'units','normalized','position',...
+   [position_counter 0.87 0.16 0.075],'BackgroundColor',[1 1 1],...
+   'FontName','Comic Sans MS','FontSize',20,'string',name);
 
 % Thermometerbild, anhängig von der Maximaltemperatur
-h1_value1 = temp{kk,3};
-if h1_value1 < 10
+value1 = temp{kk,3};
+if value1 < 10
    thermo = imread('thermometer1.jpg');
 end
-if h1_value1 >= 10 && h1_value1 <= 20
+if value1 >= 10 && value1 <= 20
    thermo = imread('thermometer2.jpg');
 end
-if h1_value1 > 20
+if value1 > 20
    thermo = imread('thermometer3.jpg');
 end
 axes('Position', [position_counter+0.02 0.65 0.03 0.15]); 
@@ -67,44 +61,38 @@ axis image;
 axis off;
 
 % Maximaltemperatur in Grad
-h1_text2 = uicontrol('style','text');
-set(h1_text2,'units','normalized');
-set(h1_text2,'position',[position_counter+0.07 0.72 0.1 0.07]);
-set(h1_text2,'BackgroundColor',[1 1 1]);
-set(h1_text2,'FontName','Arial')
-set(h1_text2,'FontSize',22);
-set(h1_text2,'ForegroundColor',[1 0 0]);
-h1_value1 = num2str(h1_value1);
-h1_value1 = [h1_value1,'°'];
-set(h1_text2,'string',h1_value1);
+value1 = num2str(value1);
+value1 = [value1,'°'];
+h_text2 = uicontrol('style','text');
+set(h_text2,'units','normalized','position',...
+   [position_counter+0.07 0.72 0.1 0.07],'BackgroundColor',[1 1 1],...
+   'FontName','Arial','FontSize',22,'ForegroundColor',[1 0 0],...
+   'string',value1);
 
 % Minimaltemperarur in Grad
-h1_text3 = uicontrol('style','text');
-set(h1_text3,'units','normalized');
-set(h1_text3,'position',[position_counter+0.07 0.65 0.1 0.07]);
-set(h1_text3,'BackgroundColor',[1 1 1]);
-set(h1_text3,'FontName','Arial');
-set(h1_text3,'FontSize',22);
-set(h1_text3,'ForegroundColor',[0 1 0]);
-h1_value2 = num2str(temp{kk,2});
-h1_value2 = [h1_value2,'°'];
-set(h1_text3,'string',h1_value2);
+value2 = num2str(temp{kk,2});
+value2 = [value2,'°'];
+h_text3 = uicontrol('style','text');
+set(h_text3,'units','normalized','position',...
+   [position_counter+0.07 0.65 0.1 0.07],'BackgroundColor',[1 1 1],...
+   'FontName','Arial','FontSize',22,'ForegroundColor',[0 1 0],...
+   'string',value2);
 
 % Wolkenbild, abhängig von der Stärke der Bewölkung
-h1_value3 = round(cloud{kk,2});
-if h1_value3 >= 0 && h1_value3 < 25
+value3 = round(cloud{kk,2});
+if value3 >= 0 && value3 < 25
    wolke = imread('wolke1.jpg');
    font_color = [1 0.8 0];
 end
-if h1_value3 >= 25 && h1_value3 < 50
+if value3 >= 25 && value3 < 50
    wolke = imread('wolke2.jpg');
    font_color = [1 0.35 0];
 end
-if h1_value3 >= 50 && h1_value3 < 75
+if value3 >= 50 && value3 < 75
    wolke = imread('wolke3.jpg');
    font_color = [0 0.5 1];
 end
-if h1_value3 >= 75 && h1_value3 <= 100
+if value3 >= 75 && value3 <= 100
    wolke = imread('wolke4.jpg');
    font_color = [0 0 1];
 end
@@ -114,16 +102,13 @@ axis image;
 axis off;
 
 % Bewölkungsgrad in Prozent
-h1_text4 = uicontrol('style','text');
-set(h1_text4,'units','normalized');
-set(h1_text4,'position',[position_counter+0.03 0.35 0.1 0.065]);
-set(h1_text4,'BackgroundColor',[1 1 1]);
-set(h1_text4,'FontName','Arial');
-set(h1_text4,'FontSize',22);
-set(h1_text4,'ForegroundColor',font_color);
-h1_value3 = num2str(h1_value3);
-h1_value3 = [h1_value3,'%'];
-set(h1_text4,'string',h1_value3);
+value3 = num2str(value3);
+value3 = [value3,'%'];
+h_text4 = uicontrol('style','text');
+set(h_text4,'units','normalized','position',...
+   [position_counter+0.03 0.35 0.1 0.065],'BackgroundColor',[1 1 1],...
+   'FontName','Arial','FontSize',22,'ForegroundColor',font_color,...
+   'string',value3);
 
 % Niederschlagsbild
 niederschlag = imread('niederschlag.jpg');
@@ -133,17 +118,19 @@ axis image;
 axis off;
 
 % Niederschlagswert in mm
-h1_value4 = (round(prec{kk,2}*100))/100;
-h1_text5 = uicontrol('style','text');
-set(h1_text5,'units','normalized');
-set(h1_text5,'position',[position_counter+0.03 0.03 0.1 0.075]);
-set(h1_text5,'BackgroundColor',[1 1 1]);
-set(h1_text5,'FontName','Arial');
-set(h1_text5,'FontSize',19);
-set(h1_text5,'ForegroundColor',[0.1 0 1]);
-h1_value4 = num2str(h1_value4);
-h1_value4 = [h1_value4,'mm'];
-set(h1_text5,'string',h1_value4);
+if kk <= 3
+   unit = 'mm/3h';
+else
+   unit = 'mm/6h';
+end
+value4 = (round(prec{kk,2}*100))/100;
+value4 = num2str(value4);
+value4 = [value4,unit];
+h_text5 = uicontrol('style','text');
+set(h_text5,'units','normalized','position',...
+   [position_counter 0.03 0.15 0.075],'BackgroundColor',[1 1 1],...
+   'FontName','Arial','FontSize',17,'ForegroundColor',[0.1 0 1],...
+   'string',value4);
 
 position_counter = position_counter + 0.2;
 
