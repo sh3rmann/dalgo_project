@@ -103,7 +103,11 @@ for kk = 1:length(temp(:,3))
        cloud{kk,3} = [cloud{kk,3},'00']; 
     end
 end
-
+for kk = 1:length(prec(:,3))
+    if length(prec{kk,3}) == 3
+        prec{kk,3} = [prec{kk,3},'0'];
+    end
+end
 % Erstellen eines neuen cell-arrays, in den die Minimal-, die 
 % Maximaltemperatur und das Datum der nächsten 10 Tage gespeichert werden 
 temp_min_max = cell(length(datum1),3);
