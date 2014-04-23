@@ -110,20 +110,15 @@ set(h_text4,'units','normalized','position',...
    'FontName','Arial','FontSize',22,'ForegroundColor',font_color,...
    'string',value3);
 
-% Niederschlagsbild
+% Niederschlagsbild, abhängig von der Niederschlagsmenge
+if kk >= 4
+   value4 = value4/2;
+end
 value4 = (round(prec{kk,2}*100))/100;
-if kk <= 3
-   if value4 < 1.5  
-      niederschlag = imread('niederschlag1.jpg');
-   else
-      niederschlag = imread('niederschlag2.jpg'); 
-   end
+if value4 < 1.5  
+   niederschlag = imread('niederschlag1.jpg');
 else
-   if value4 < 3  
-      niederschlag = imread('niederschlag1.jpg');
-   else
-      niederschlag = imread('niederschlag2.jpg'); 
-   end
+   niederschlag = imread('niederschlag2.jpg'); 
 end
 axes('Position', [position_counter+0.03 0.13 0.1 0.15]); 
 image(niederschlag);
@@ -131,13 +126,8 @@ axis image;
 axis off;
 
 % Niederschlagswert in mm
-if kk <= 3
-   unit = 'mm/3h';
-else
-   unit = 'mm/6h';
-end
 value4 = num2str(value4);
-value4 = [value4,unit];
+value4 = [value4,'mm/3h'];
 h_text5 = uicontrol('style','text');
 set(h_text5,'units','normalized','position',...
    [position_counter 0.03 0.15 0.075],'BackgroundColor',[1 1 1],...
