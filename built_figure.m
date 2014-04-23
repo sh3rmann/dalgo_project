@@ -111,7 +111,20 @@ set(h_text4,'units','normalized','position',...
    'string',value3);
 
 % Niederschlagsbild
-niederschlag = imread('niederschlag.jpg');
+value4 = (round(prec{kk,2}*100))/100;
+if kk <= 3
+   if value4 < 1.5  
+      niederschlag = imread('niederschlag1.jpg');
+   else
+      niederschlag = imread('niederschlag2.jpg'); 
+   end
+else
+   if value4 < 3  
+      niederschlag = imread('niederschlag1.jpg');
+   else
+      niederschlag = imread('niederschlag2.jpg'); 
+   end
+end
 axes('Position', [position_counter+0.03 0.13 0.1 0.15]); 
 image(niederschlag);
 axis image;
@@ -123,7 +136,6 @@ if kk <= 3
 else
    unit = 'mm/6h';
 end
-value4 = (round(prec{kk,2}*100))/100;
 value4 = num2str(value4);
 value4 = [value4,unit];
 h_text5 = uicontrol('style','text');

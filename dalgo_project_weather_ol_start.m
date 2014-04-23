@@ -9,7 +9,6 @@ clear;
 close all;
 clc;
 
-%------------Your script starts here-------- 
 fprintf('Loading data. Please wait...');
 
 [temp, cloud, prec] = get_data();
