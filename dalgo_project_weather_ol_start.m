@@ -8,14 +8,14 @@
 clear;
 close all;
 clc;
-
+tic
 fprintf('Loading data. Please wait...');
 
 [temp, cloud, prec] = get_data();
 
 built_figure(temp, cloud, prec);
-
-clc;
+toc
+%clc;
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug
 % Institute for Hearing Technology and Audiology

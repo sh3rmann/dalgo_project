@@ -27,8 +27,8 @@ content_st = parse_xml(content_java);
 
 % Erstellen von cell-arrays, in denen die entsprechenden Daten gespeichert
 % werden. Zudem werden zwei counter erstellt
-temp = cell(1,3);
-cloud = cell(1,3);
+temp = cell(1,2);
+cloud = cell(1,1);
 prec = cell(1,3);
 
 counter1 = 1;
@@ -42,12 +42,8 @@ for kk = 1:length(content_st.children{1}.children{2}.children)
     if strcmp(content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.name,'temperature');
         
         temp(counter1,1) = {content_st.children{1}.children{2}.children{kk}.attributes.from};
-        temp(counter1,2) = {content_st.children{1}.children{2}.children{kk}.attributes.to};
-        temp(counter1,3) = {content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.attributes.value};
-
-        cloud (counter1,1) = {content_st.children{1}.children{2}.children{kk}.attributes.from};
-        cloud (counter1,2) = {content_st.children{1}.children{2}.children{kk}.attributes.to};
-        cloud (counter1,3) = {content_st.children{1}.children{2}.children{kk}.children{1}.children{6}.attributes.percent};
+        temp(counter1,2) = {content_st.children{1}.children{2}.children{kk}.children{1}.children{1}.attributes.value};
+        cloud (counter1,1) = {content_st.children{1}.children{2}.children{kk}.children{1}.children{6}.attributes.percent};
 
         counter1 = counter1 + 1;
     end
@@ -61,11 +57,11 @@ for kk = 1:length(content_st.children{1}.children{2}.children)
         counter2 = counter2 + 1;
     end
 end   
-tic
+
 % Heraussuchen aller Daten (Plural von Datum!)aus dem Temperatur-/ bzw. 
 % Niederschlags cell-array 
 datum_full1 = regexp(temp(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
-datum_full2 = regexp(prec,'[0-9]+-[0-9]+-[0-9]+','match');
+datum_full2 = regexp(prec(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
 
 % Alle doppelten Daten werden hier entfernt
 datum1 = unique(vertcat(datum_full1{:}));
@@ -77,7 +73,7 @@ temp_min_max = cell(length(datum1),3);
 
 % Erstellen eines neuen cell-arrays, in den der mittlere Bewölkungswert und
 % das Datum der nächsten 10 Tage gespeichert wird
-cloud_mean = cell(length(datum1),2);
+cloud_mean = cell(length(datum1),1);
 
 % Schleife, in der die Temperatur-/ Bewölkungsdaten von jedem Datum  
 % herausgesucht werden. Anschließend werden diese in eine Matrix und von 
@@ -89,15 +85,14 @@ for kk = 1:length(datum1)
     row1 = ~cellfun(@isempty, regexp(temp(:,1), datum1(kk)));
     row2 = find(row1 == 1);
     
-    temp_all = str2double(temp(row2,3));
+    temp_all = str2double(temp(row2,2));
    
-    cloud_all = str2double(cloud(row2,3));
+    cloud_all = str2double(cloud(row2,1));
        
     temp_min_max{kk,1} = datum1{kk}; 
     temp_min_max{kk,2} = min(temp_all);
     temp_min_max{kk,3} = max(temp_all);
-    cloud_mean{kk,1} = datum1{kk};
-    cloud_mean{kk,2} = mean(cloud_all); 
+    cloud_mean{kk,1} = mean(cloud_all); 
     
 end
 
@@ -126,7 +121,7 @@ for kk = 1:length(datum2)
     prec_mean{kk,2} = mean(prec_all);
 
 end
-toc
+
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug
 % Jade University of Applied Sciences 

@@ -1,4 +1,4 @@
- function [x] = built_figure(temp, cloud, prec)
+ function [] = built_figure(temp, cloud, prec)
 % function to built a figure and show weather forecast grafically
 % Usage [] = built_figure(temp, cloud, prec)
 % Input Parameter:
@@ -13,7 +13,6 @@
 % Version History:
 % Ver. 0.01                  21-Apr-2014                Initials (SH JK)
 % Ver. 1.00                  21-Apr-2014                Initials (SH JK)
-
 
 % Erstellen der figure 
 figure_handle = figure();
@@ -79,7 +78,7 @@ set(h_text3,'units','normalized','position',...
    'string',value2);
 
 % Wolkenbild, abhängig von der Stärke der Bewölkung
-value3 = round(cloud{kk,2});
+value3 = round(cloud{kk,1});
 if value3 >= 0 && value3 < 25
    wolke = imread('wolke1.jpg');
    font_color = [1 0.8 0];
