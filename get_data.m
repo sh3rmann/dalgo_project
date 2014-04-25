@@ -9,11 +9,11 @@ function [temp_min_max, cloud_mean, prec_mean] = get_data()
 %        prec_mean:    cell-array with the mean precipitation for the next
 %                      ten days
 %------------------------------------------------------------------------ 
-% Author: S.Herrmann, J.Klug (c) TGM @ Jade Hochschule applied licence see 
+% Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied licence see 
 % EOF 
 % Version History:
-% Ver. 0.01                  14-Apr-2014                 Initials (SH,JK)
-% Ver. 1.0                   20-Apr-2014                 Initials (SH,JK)
+% Ver. 0.01                  14-Apr-2014                 Initials (SH,JK,MN)
+% Ver. 1.0                   20-Apr-2014                 Initials (SH,JK,MN)
 
 % Herunterladen der Wetterdaten aus dem Internet
 urlwrite ('http://api.met.no/weatherapi/locationforecast/1.8/?lat=53.143889;lon=8.213889','data.xml'); % Hallo Sven
@@ -119,7 +119,7 @@ for kk = 1:length(datum2)
 end
 
 %--------------------Licence ---------------------------------------------
-% Copyright (c) <2014> S.Herrmann, J.Klug
+% Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Jade University of Applied Sciences 
 % Permission is hereby granted, free of charge, to any person obtaining 
 % a copy of this software and associated documentation files 
