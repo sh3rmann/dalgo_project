@@ -2,7 +2,7 @@ function [temp_min_max, cloud_mean, prec_mean] = get_data()
 % function to do load weather data´s from internet
 % Usage [temp_min_max, cloud_mean, prec_mean] = get_data()
 % Output Parameter:
-%        temp_min_max: cell-array with the minimal and maximal temperature
+%        temp_min_max: cell-array with the date the minimal and maximal temperature
 %                      for the next ten days
 %        cloud_mean:   cell-array with the mean cloudyness for the next ten
 %                      days
