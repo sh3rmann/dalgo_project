@@ -67,17 +67,16 @@ datum_full2 = regexp(prec(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
 datum1 = unique(vertcat(datum_full1{:}));
 datum2 = unique(vertcat(datum_full2{:}));
 
-% Erstellen eines neuen cell-arrays, in den die Minimal-, die 
-% Maximaltemperatur und das Datum der nächsten 10 Tage gespeichert werden 
+% Erstellen eines neuen cell-arrays, in den das Datum , die Minimal- und die 
+% Maximaltemperatur der nächsten 10 Tage gespeichert werden 
 temp_min_max = cell(length(datum1),3);
 
-% Erstellen eines neuen cell-arrays, in den der mittlere Bewölkungswert und
-% das Datum der nächsten 10 Tage gespeichert wird
+% Erstellen eines neuen cell-arrays, in den der mittlere Bewölkungswert 
+% der nächsten 10 Tage gespeichert wird
 cloud_mean = cell(length(datum1),1);
 
 % Schleife, in der die Temperatur-/ Bewölkungsdaten von jedem Datum  
-% herausgesucht werden. Anschließend werden diese in eine Matrix und von 
-% dort aus in Zahlen gewandelt. Von jedem Tag wird dann die Minimal-/
+% herausgesucht werden. Von jedem Tag wird die Minimal-/
 % Maximaltemperatur und der mittlere Bewölkungswert bestimmt und zusammen
 % mit dem entsprechendem Datum gespeichert.
 for kk = 1:length(datum1)
@@ -100,14 +99,11 @@ end
 % und das Datum der nächsten 10 Tage gespeichert wird 
 prec_mean = cell(length(datum2),2);
 
-% Schleife, in der alle Niederschlagswerte pro Tag herausgesucht werden.
-% Anschließend werden diese in eine Matrix und von dort aus in Zahlen 
-% umgewandelt. Zum Schluss wird pro Tag der Mittelwert gebildet und
-% zusammen mit dem entsprechendem Datum in dem cell-array gespeichert.
-% Anmerkung: da die Niederschlagswerte nicht stündlich -wie Temperatur und
-% Bewökung- vorliegen, sondern in unterschiedlichen Intervallen, ist die
-% Datenmenge entsprechend größer. Daher werden für die Zuordnung zu den
-% jeweiligen Tagen andere Zeilenangaben benötigt. Um die Übersichtlichkeit
+% Schleife, in der für alle Tage der Mittelwert des Niederschlages gebildet und
+% zusammen mit dem entsprechendem Datum in dem cell-array gespeichert wird.
+% Anmerkung: Niederschlagswerte liegen nicht stündlich -wie Temperatur und
+% Bewökung- vor, sondern in unterschiedlichen Intervallen. Für die Zuordnung zu den
+% jeweiligen Tagen werden andere Zeilenangaben benötigt. Um die Übersichtlichkeit
 % zu wahren, findet dieser Arbeitsschritt in einer gesonderten 
 % Schleife statt
 for kk = 1:length(datum2)
