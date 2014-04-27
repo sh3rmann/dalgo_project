@@ -10,7 +10,6 @@ close all;
 clc;
 tic
 fprintf('Loading data. Please wait...');
-fprintf('Marit ist da');
 
 [temp, cloud, prec] = get_data();
 
