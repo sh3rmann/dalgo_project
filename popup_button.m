@@ -14,6 +14,7 @@ function [] = popup_button(handle,event,temp,cloud,prec,weatherdata24)
 
 % ließt die entsprechende Position des ausgewählten Menüpunktes des
 % popup-Buttons aus  
+
 position = get(handle, 'value');
 close all;
 % Zuordnung der Auswahl zu der entsprechenden Funktion
@@ -22,12 +23,11 @@ if position == 1
         built_figure_dayweather(temp,cloud,prec,weatherdata24)  
 elseif position == 2
         % 10 Tagesansicht
-        disp('Diese Funktion in noch nicht verfügbar...')
+        built_figure_10days(temp,cloud,prec,weatherdata24)
 elseif position == 3
        % 5 Tagesansicht
        built_figure(temp,cloud,prec,weatherdata24)
 end
-%blablabla
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S. Herrmann, J. Klug, M. Nienaber
 % Jade University of Applied Sciences 
