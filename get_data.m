@@ -1,4 +1,4 @@
-function [temp_min_max, cloud_mean, prec_mean] = get_data()
+ function [temp_min_max, cloud_mean, prec_mean] = get_data()
 % function to do load weather data´s from internet
 % Usage [temp_min_max, cloud_mean, prec_mean] = get_data()
 % Output Parameter:
