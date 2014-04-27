@@ -10,12 +10,14 @@ close all;
 clc;
 tic
 fprintf('Loading data. Please wait...');
+fprintf('Marit ist da');
 
 [temp, cloud, prec] = get_data();
 
 built_figure(temp, cloud, prec);
+
+clc;
 toc
-%clc;
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Institute for Hearing Technology and Audiology
