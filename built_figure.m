@@ -81,15 +81,15 @@ set(h_text3,'units','normalized','position',...
 value3 = round(cloud{kk,1});
 if value3 >= 0 && value3 < 25
    wolke = imread('wolke1.jpg');
-   font_color = [1 0.8 0];
+   font_color = [0 0.75 1];
 end
 if value3 >= 25 && value3 < 50
    wolke = imread('wolke2.jpg');
-   font_color = [1 0.35 0];
+   font_color = [0 0.5 1];
 end
 if value3 >= 50 && value3 < 75
    wolke = imread('wolke3.jpg');
-   font_color = [0 0.5 1];
+   font_color = [0 0.25 1];
 end
 if value3 >= 75 && value3 <= 100
    wolke = imread('wolke4.jpg');
