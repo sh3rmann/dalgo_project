@@ -1,22 +1,24 @@
- function [temp_min_max, cloud_mean, prec_mean] = get_data()
+function [temp_min_max, cloud_mean, prec_mean] = get_data()
 % function to do load weather data´s from internet
 % Usage [temp_min_max, cloud_mean, prec_mean] = get_data()
 % Output Parameter:
-%        temp_min_max: cell-array with the date the minimal and maximal temperature
+%        temp_min_max: cell-array with the date the minimal and maximal 
+%                      temperature
 %                      for the next ten days
 %        cloud_mean:   cell-array with the mean cloudyness for the next ten
 %                      days
 %        prec_mean:    cell-array with the mean precipitation for the next
 %                      ten days
 %------------------------------------------------------------------------ 
-% Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied licence see 
+% Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied 
+% licence see 
 % EOF 
 % Version History:
-% Ver. 0.01                  14-Apr-2014                 Initials (SH,JK,MN)
-% Ver. 1.0                   20-Apr-2014                 Initials (SH,JK,MN)
+% Ver. 0.01                  14-Apr-2014                Initials (SH,JK,MN)
+% Ver. 1.0                   20-Apr-2014                Initials (SH,JK,MN)
 
 % Herunterladen der Wetterdaten aus dem Internet
-urlwrite ('http://api.met.no/weatherapi/locationforecast/1.8/?lat=53.143889;lon=8.213889','data.xml'); % Hallo Sven
+urlwrite ('http://api.met.no/weatherapi/locationforecast/1.8/?lat=53.143889;lon=8.213889','data.xml'); 
 
 % Einlesen der xml - Datei als Java Object
 content_java = xmlread('data.xml');
@@ -63,7 +65,7 @@ end
 datum_full1 = regexp(temp(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
 datum_full2 = regexp(prec(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
 
-% Alle doppelten Daten werden hier entfernt
+% Alle mehrfach vorhandenen Daten werden hier entfernt
 datum1 = unique(vertcat(datum_full1{:}));
 datum2 = unique(vertcat(datum_full2{:}));
 
@@ -99,13 +101,13 @@ end
 % und das Datum der nächsten 10 Tage gespeichert wird 
 prec_mean = cell(length(datum2),2);
 
-% Schleife, in der für alle Tage der Mittelwert des Niederschlages gebildet und
-% zusammen mit dem entsprechendem Datum in dem cell-array gespeichert wird.
-% Anmerkung: Niederschlagswerte liegen nicht stündlich -wie Temperatur und
-% Bewökung- vor, sondern in unterschiedlichen Intervallen. Für die Zuordnung zu den
-% jeweiligen Tagen werden andere Zeilenangaben benötigt. Um die Übersichtlichkeit
-% zu wahren, findet dieser Arbeitsschritt in einer gesonderten 
-% Schleife statt
+% Schleife, in der für alle Tage der Mittelwert des Niederschlages gebildet 
+% und zusammen mit dem entsprechendem Datum in dem cell-array gespeichert 
+% wird. Anmerkung: Niederschlagswerte liegen nicht stündlich -wie Temperatur
+% und Bewökung- vor, sondern in unterschiedlichen Intervallen. Für die 
+% Zuordnung zu den jeweiligen Tagen werden andere Zeilenangaben benötigt. 
+%Um die Übersichtlichkeit zu wahren, findet dieser Arbeitsschritt in einer 
+%gesonderten  Schleife statt
 for kk = 1:length(datum2)
     
     row1 = ~cellfun(@isempty, regexp(prec(:,1), datum2(kk)));
