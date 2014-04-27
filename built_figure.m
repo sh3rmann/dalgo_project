@@ -1,4 +1,4 @@
- function [] = built_figure(temp, cloud, prec)
+ function [] = built_figure(temp, cloud, prec, weatherdata24)
 % function to built a figure and show weather forecast grafically
 % Usage [] = built_figure(temp, cloud, prec)
 % Input Parameter:
@@ -36,7 +36,7 @@ axis off;
 h_button = uicontrol(figure_handle,'style','popupmenu','units',...
 'normalized','string',{'Tagesansicht','10 Tagesansicht',...
 '5 Tagesansicht'},'position',[0.13 0.92 0.3 0.05],'BackgroundColor',[1 1 0.5],...
-'FontName','Comic Sans MS','FontSize',12,'callback',{@popup_button,temp,cloud,prec});
+'FontName','Comic Sans MS','FontSize',12,'callback',{@popup_button,temp,cloud,prec,weatherdata24});
 
 % Tag 1 bis 5 werden in einer Schleife in die figure geladen
 position_counter = 0.02;

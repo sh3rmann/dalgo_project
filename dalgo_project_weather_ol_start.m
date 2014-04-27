@@ -13,8 +13,8 @@ tic
 fprintf('Loading data. Please wait...');
 
 [temp, cloud, prec] = get_data();
-
-built_figure(temp, cloud, prec);
+weatherdata24 = 'nicht vorhanden...';
+built_figure(temp, cloud, prec,weatherdata24);
 
 clc;
 toc

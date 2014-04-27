@@ -1,4 +1,4 @@
-function [] = built_figure_dayweather(weatherdata24)
+function [] = built_figure_dayweather(temp,cloud,prec,weatherdata24)
 % function to built a figure and show dayweather
 % Usage [] = built_figure_dayweather(weatherdata24)
 % Input Parameter:
@@ -24,6 +24,12 @@ set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle',...
 
 set(gca,'position',[0 0 1 1]);    
 axis off
+
+h_button = uicontrol(figure_handle,'style','popupmenu','units',...
+'normalized','string',{'Tagesansicht','10 Tagesansicht',...
+'5 Tagesansicht'},'position',[0.13 0.92 0.3 0.05],'BackgroundColor',[1 1 0.5],...
+'FontName','Comic Sans MS','FontSize',12,'callback',{@popup_button,temp,cloud,prec,weatherdata24});
+
 for kk = 1:Stunden
         yPosition = (.9-kk*(0.8/Stunden));
         hohe = 0.8/Stunden;
