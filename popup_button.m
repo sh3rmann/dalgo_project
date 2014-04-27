@@ -1,31 +1,33 @@
-function [] = popup_button(handle,event,temp,cloud,prec)
-% function to do something usefull (fill out)
-% Usage [out_param] = popup_button(in_param)
+function [] = popup_button(handle,event,temp,cloud,prec,weatherdata24)
+% function to do chance the view of the forecast
+% Usage [out_param] = popup_button(temp,cloud,prec)
 % Input Parameter:
-%	 in_param: 		 Explain the parameter, default values, and units
-% Output Parameter:
-%	 out_param: 	 Explain the parameter, default values, and units
-%------------------------------------------------------------------------ 
-% Example: Provide example here if applicable (one or two lines) 
+%       handle: gives the handle from the popupmenue
+%       temp, cloud, prec: transfer the forecast information the other
+%                          views (functions)
 
 % Author: S. Herrmann, J. Klug, M. Nienaber (c) TGM @ Jade Hochschule 
 % applied licence see EOF 
 % Version History:
 % Ver. 0.01 initial create          27-Apr-2014        Initials (SH JK MN)
+% Ver. 1.00 initial create          27-Apr-2014        Initials (SH JK MN)
 
-strings = get(handle, 'string');
-value = get(handle, 'value');
-selection = strings{value};
-
-if strcmp(selection,'Tagesansicht')
-        
-elseif strcmp(selection,'10 Tagesansicht')
-       
-elseif strcmp(selection,'5 Tagesansicht')
-       built_figure(temp,cloud,prec)
+% ließt die entsprechende Position des ausgewählten Menüpunktes des
+% popup-Buttons aus  
+position = get(handle, 'value');
+close all;
+% Zuordnung der Auswahl zu der entsprechenden Funktion
+if position == 1
+        % Tagesansicht
+        built_figure_dayweather(temp,cloud,prec,weatherdata24)  
+elseif position == 2
+        % 10 Tagesansicht
+        disp('Diese Funktion in noch nicht verfügbar...')
+elseif position == 3
+       % 5 Tagesansicht
+       built_figure(temp,cloud,prec,weatherdata24)
 end
-
-
+%blablabla
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S. Herrmann, J. Klug, M. Nienaber
 % Jade University of Applied Sciences 
