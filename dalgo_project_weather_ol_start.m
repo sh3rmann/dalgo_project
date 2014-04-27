@@ -12,11 +12,11 @@ clc;
 tic
 fprintf('Loading data. Please wait...');
 
-[temp, cloud, prec] = get_data();
-weatherdata24 = 'nicht vorhanden...';
-built_figure(temp, cloud, prec,weatherdata24);
+[temp, cloud, prec,weather24data] = get_data();
+%built_figure_dayweather(temp,cloud,prec,weather24data)
+built_figure(temp, cloud, prec,weather24data);
 
-clc;
+
 toc
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber

@@ -1,4 +1,4 @@
-function [temp_min_max, cloud_mean, prec_mean] = get_data()
+function [temp_min_max, cloud_mean, prec_mean,weather24hdata] = get_data()
 % function to do load weather data´s from internet
 % Usage [temp_min_max, cloud_mean, prec_mean] = get_data()
 % Output Parameter:
@@ -64,6 +64,8 @@ end
 % Niederschlags cell-array 
 datum_full1 = regexp(temp(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
 datum_full2 = regexp(prec(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
+
+[weather24hdata] = data_per_hour(temp(:,1),temp(:,2),cloud,prec(:,3));
 
 % Alle mehrfach vorhandenen Daten werden hier entfernt
 datum1 = unique(vertcat(datum_full1{:}));

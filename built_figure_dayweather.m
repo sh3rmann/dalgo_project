@@ -36,15 +36,15 @@ for kk = 1:Stunden
     h_text1 = uicontrol('style','text');
     set(h_text1,'units','normalized','position',  [0.1 yPosition 0.1 hohe]...
         ,'BackgroundColor',[1 1 1],...
-       'FontName','Comic Sans MS','FontSize',12,'string',[Uhrzeit(kk,1) ':00']);
+       'FontName','Comic Sans MS','FontSize',12,'string',[Uhrzeit(kk,:) ':00']);
     h_text2 = uicontrol('style','text');
     set(h_text2,'units','normalized','position',...
        [.4 yPosition 0.1 hohe],'BackgroundColor',[1 1 1],...
-       'FontName','Comic Sans MS','FontSize',12,'string',[Temperatur(kk,1:end) '°']);
+       'FontName','Comic Sans MS','FontSize',12,'string',[Temperatur(kk,:) '°']);
     h_text3 = uicontrol('style','text');
     set(h_text3,'units','normalized','position',...
        [.5 yPosition 0.1 hohe],'BackgroundColor',[1 1 1],...
-       'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Wolken(kk,1:end)) ' %']);
+       'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Wolken(kk,:)) ' %']);
 
     % Bildauswahl fuer Wolken
         if Wolken(kk,:) >= 0 && Wolken(kk) < 25
@@ -65,14 +65,11 @@ for kk = 1:Stunden
         axis image;
         axis off;
 
-
     h_text4 = uicontrol('style','text');
     set(h_text4,'units','normalized','position',...
        [.6 yPosition 0.1 hohe],'BackgroundColor',[1 1 1],...
-       'FontName','Comic Sans MS','FontSize',12,'string',[Niederschlag(kk,1:end) ' mm']);
+       'FontName','Comic Sans MS','FontSize',12,'string',[Niederschlag(kk,:) ' mm']);
 end
-
-
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Jade University of Applied Sciences 
