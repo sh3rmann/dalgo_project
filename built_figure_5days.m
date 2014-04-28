@@ -13,6 +13,21 @@ function [] = built_figure_5days(temp, cloud, prec, weatherdata24)
 % Version History:
 % Ver. 0.01 initial create        28-Apr-2014  Initials (SH JK MN)
 
+findobj('tag','white_figure');
+
+set(gca,'position',[0 0 1 1]);   
+axis ([0 1 0 1]);
+plot([0.05 0.95],[0.80 0.80],'k:');
+hold on;
+plot([0.2 0.2],[0.05 0.901],'k:');
+hold on;
+plot([0.4 0.4],[0.05 0.901],'k:');
+hold on;
+plot([0.6 0.6],[0.05 0.901],'k:');
+hold on;
+plot([0.8 0.8],[0.05 0.901],'k:');
+axis off;
+
 % Tag 1 bis 5 werden in einer Schleife in die figure geladen
 position_counter = 0.02;
 
@@ -20,8 +35,8 @@ for kk = 1:5
 % Wochentag
 [num,name] = weekday(temp{kk,1},'local','long');
 h_text1 = uicontrol('style','text');
-set(h_text1,'units','normalized','position',...
-   [position_counter 0.82 0.16 0.075],'BackgroundColor',[1 1 1],...
+set(h_text1,'units','normalized','position',[position_counter 0.82 0.16 0.075],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Comic Sans MS','FontSize',20,'string',name);
 
 % Thermometerbild, anhängig von der Maximaltemperatur
@@ -35,7 +50,7 @@ elseif value1 >= 10 && value1 <= 20
 elseif value1 > 20
    thermo = imread('thermometer3.jpg');
 end
-axes('Position', [position_counter+0.02 0.62 0.03 0.15]); 
+axes('tag','rebase','Position',[position_counter+0.02 0.62 0.03 0.15]); 
 image(thermo);
 axis image;
 axis off;
@@ -44,8 +59,8 @@ axis off;
 value1 = num2str(value1);
 value1 = [value1,'°'];
 h_text2 = uicontrol('style','text');
-set(h_text2,'units','normalized','position',...
-   [position_counter+0.07 0.69 0.1 0.07],'BackgroundColor',[1 1 1],...
+set(h_text2,'units','normalized','position',[position_counter+0.07 0.69 0.1 0.07],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',22,'ForegroundColor',[1 0 0],...
    'string',value1);
 
@@ -53,8 +68,8 @@ set(h_text2,'units','normalized','position',...
 value2 = num2str(temp{kk,2});
 value2 = [value2,'°'];
 h_text3 = uicontrol('style','text');
-set(h_text3,'units','normalized','position',...
-   [position_counter+0.07 0.62 0.1 0.07],'BackgroundColor',[1 1 1],...
+set(h_text3,'units','normalized','position',[position_counter+0.07 0.62 0.1 0.07],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',22,'ForegroundColor',[0 1 0],...
    'string',value2);
 
@@ -76,7 +91,7 @@ elseif value3 >= 75 && value3 <= 100
    wolke = imread('wolke4.jpg');
    font_color = [0 0 1];
 end
-axes('Position', [position_counter+0.03 0.42 0.1 0.15]); 
+axes('tag','rebase','Position', [position_counter+0.03 0.42 0.1 0.15]); 
 image(wolke);
 axis image;
 axis off;
@@ -85,8 +100,8 @@ axis off;
 value3 = num2str(value3);
 value3 = [value3,'%'];
 h_text4 = uicontrol('style','text');
-set(h_text4,'units','normalized','position',...
-   [position_counter+0.03 0.33 0.1 0.065],'BackgroundColor',[1 1 1],...
+set(h_text4,'units','normalized','position',[position_counter+0.03 0.33 0.1 0.065],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',22,'ForegroundColor',font_color,...
    'string',value3);
 
@@ -100,7 +115,7 @@ if value4 < 1.5
 else
    niederschlag = imread('niederschlag2.jpg'); 
 end
-axes('Position', [position_counter+0.03 0.12 0.1 0.15]); 
+axes('tag','rebase','Position', [position_counter+0.03 0.12 0.1 0.15]); 
 image(niederschlag);
 axis image;
 axis off;
@@ -109,8 +124,8 @@ axis off;
 value4 = num2str(value4);
 value4 = [value4,'mm/3h'];
 h_text5 = uicontrol('style','text');
-set(h_text5,'units','normalized','position',...
-   [position_counter 0.03 0.15 0.075],'BackgroundColor',[1 1 1],...
+set(h_text5,'units','normalized','position',[position_counter 0.03 0.15 0.075],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',17,'ForegroundColor',[0.1 0 1],...
    'string',value4);
 

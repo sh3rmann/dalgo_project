@@ -21,19 +21,7 @@ Temperatur = cell2mat(weatherdata24(1:end,2));
 Wolken = cell2mat(weatherdata24(1:end,3));
 Niederschlag = cell2mat(weatherdata24(1:end,4));
 
-% figure setting
-figure_handle = figure();
-set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle',...
-   'off','units','normalized','position',[0.1691 0.1302 0.6991 0.7985],...
-   'ToolBar','none','MenuBar','none','Color',[1 1 1 ]);
-
-set(gca,'position',[0 0 1 1]);    
-axis off
-
-h_button = uicontrol(figure_handle,'style','popupmenu','units',...
-'normalized','string',{'Tagesansicht','10 Tagesansicht',...
-'5 Tagesansicht'},'position',[0.13 0.92 0.3 0.05],'BackgroundColor',[1 1 0.5],...
-'FontName','Comic Sans MS','FontSize',12,'callback',{@popup_button,temp,cloud,prec,weatherdata24});
+findobj('tag','white_figure');
 
 for kk = 1:Stunden
     
@@ -41,13 +29,13 @@ for kk = 1:Stunden
     
     h_text1 = uicontrol('style','text');
     set(h_text1,'units','normalized','position',  [0.4 yPosition 0.05 hohe]...
-        ,'BackgroundColor',[1 1 1],...
+        ,'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','center',...
        'FontName','Comic Sans MS','FontSize',12,'string',[Uhrzeit(kk,:) ':00']);
     
            
 %     h_text2 = uicontrol('style','text');
 %     set(h_text2,'units','normalized','position', [.6 yPosition 0.1 hohe],...
-%        'BackgroundColor',[1 1 1],'HorizontalAlignment','right',...
+%        'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
 %        'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Wolken(kk,:)) ' %']);
 
     % Bildauswahl fuer Wolken
@@ -68,22 +56,22 @@ for kk = 1:Stunden
            font_color = [0 0 1];
            text = 'Bewölkt';
         end
-        axes('Position', [.5 yPosition hohe hohe]); 
+        axes('tag','rebase','Position', [.5 yPosition hohe hohe]); 
         image(wolke);
         axis image;
         axis off;
 
     h_text3 = uicontrol('style','text');
     set(h_text3,'units','normalized','position',[.6 yPosition 0.05 hohe]...
-        ,'BackgroundColor',[1 1 1],'HorizontalAlignment','right',...
+        ,'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
        'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Temperatur(kk,:)) '°']);    
         
         
         
         
     h_text4 = uicontrol('style','text');
-    set(h_text4,'units','normalized','position',...
-       [.7 yPosition 0.1 hohe],'BackgroundColor',[1 1 1],'HorizontalAlignment','left',...
+    set(h_text4,'units','normalized','position',[.7 yPosition 0.1 hohe],...
+       'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','left',...
        'FontName','Comic Sans MS','FontSize',12,'ForegroundColor',font_color,'string',text);    
     
     % Niederschlagsbild, abhängig von der Niederschlagsmenge
@@ -95,17 +83,15 @@ for kk = 1:Stunden
         else
            niederschlag = imread('niederschlag2.jpg'); 
         end
-        axes('Position', [.8 yPosition hohe hohe]); 
+        axes('tag','rebase','Position', [.8 yPosition hohe hohe]); 
         image(niederschlag);
         axis image;
         axis off;
    
       h_text5 = uicontrol('style','text');
-    set(h_text5,'units','normalized','position',...
-       [.9 yPosition 0.07 hohe],'BackgroundColor',[1 1 1],'HorizontalAlignment','right',...
+    set(h_text5,'units','normalized','position',[.9 yPosition 0.07 hohe],...
+        'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
        'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Niederschlag(kk,:)) ' mm']);  
-        
-        
 end
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
