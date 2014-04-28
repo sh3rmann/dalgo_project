@@ -10,22 +10,33 @@ function [] = popup_button(handle,event,temp,cloud,prec,weatherdata24)
 % applied licence see EOF 
 % Version History:
 % Ver. 0.01 initial create          27-Apr-2014        Initials (SH JK MN)
-% Ver. 1.00 initial create          27-Apr-2014        Initials (SH JK MN)
+% Ver. 1.00 initial create          28-Apr-2014        Initials (SH JK MN)
+
+
+% Löscht alle vorhandenen Objekte mit dem tag 'rebase'
+% (Textfelder und Bilder)
+rebase = findobj('tag','rebase');
+delete(rebase);
 
 % ließt die entsprechende Position des ausgewählten Menüpunktes des
 % popup-Buttons aus  
-
 position = get(handle, 'value');
-close all;
+
 % Zuordnung der Auswahl zu der entsprechenden Funktion
+
+% Tagesansicht
 if position == 1
-        % Tagesansicht
+
         built_figure_dayweather(temp,cloud,prec,weatherdata24)  
+        
+% 10 Tagesansicht
 elseif position == 2
-        % 10 Tagesansicht
+    
         built_figure_10days(temp,cloud,prec,weatherdata24)
+        
+% 5 Tagesansicht
 elseif position == 3
-       % 5 Tagesansicht
+       
        built_figure(temp,cloud,prec,weatherdata24)
 end
 %--------------------Licence ---------------------------------------------
