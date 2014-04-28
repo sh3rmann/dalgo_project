@@ -14,7 +14,8 @@ function [] = built_figure_5days(temp, cloud, prec, weatherdata24)
 % Ver. 0.01 initial create        28-Apr-2014  Initials (SH JK MN)
 
 findobj('tag','white_figure');
-
+set(gca,'position',[0 0 1 1]); 
+axis ([0 1 0 1]);
 plot([0.05 0.95],[0.80 0.80],'k:','tag','rebase');
 hold on;
 plot([0.2 0.2],[0.05 0.901],'k:','tag','rebase');

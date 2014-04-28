@@ -21,7 +21,7 @@ figure_handle = figure();
 set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle',...
    'off','units','normalized','position',[0.1691 0.1302 0.6991 0.7985],...
    'ToolBar','none','MenuBar','none','Color',[1 1 1 ],'tag','white_figure');
-set(gca,'position',[0 0 1 1]); 
+
 
 % Erstellen des Buttons
 h_button = uicontrol(figure_handle,'style','popupmenu');
