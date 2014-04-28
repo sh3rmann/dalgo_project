@@ -13,7 +13,8 @@ function [] = popup_button(handle,event,temp,cloud,prec,weatherdata24)
 % Ver. 1.00 initial create          28-Apr-2014        Initials (SH JK MN)
 
 
-% Löscht alle vorhandenen Objekte mit dem tag 'rebase'
+% Löscht alle vorhandenen Objekte mit dem tag 'rebase' und alle
+% Koordinatensysteme (Bilder)
 % (Textfelder und Bilder)
 rebase = findobj('tag','rebase');
 delete(rebase);
