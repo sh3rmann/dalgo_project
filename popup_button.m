@@ -37,7 +37,7 @@ elseif position == 2
 % 5 Tagesansicht
 elseif position == 3
        
-       built_figure(temp,cloud,prec,weatherdata24)
+       built_figure_5days(temp,cloud,prec,weatherdata24)
 end
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S. Herrmann, J. Klug, M. Nienaber
