@@ -21,6 +21,7 @@ figure_handle = figure();
 set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle',...
    'off','units','normalized','position',[0.1691 0.1302 0.6991 0.7985],...
    'ToolBar','none','MenuBar','none','Color',[1 1 1 ],'tag','white_figure');
+set(gca,'position',[0 0 1 1]); 
 
 % Erstellen des Buttons
 h_button = uicontrol(figure_handle,'style','popupmenu');
@@ -28,7 +29,7 @@ set(h_button,'units','normalized','string',{'Tagesansicht',...
    '10 Tagesansicht','5 Tagesansicht'},'position',[0.13 0.92 0.3 0.05],...
    'BackgroundColor',[1 1 0.5],'FontName','Comic Sans MS','FontSize',12,...
    'callback',{@popup_button,temp,cloud,prec,weatherdata24});
-
+axis off;
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Jade University of Applied Sciences 

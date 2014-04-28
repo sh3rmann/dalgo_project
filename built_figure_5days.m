@@ -15,19 +15,16 @@ function [] = built_figure_5days(temp, cloud, prec, weatherdata24)
 
 findobj('tag','white_figure');
 
-set(gca,'position',[0 0 1 1]);   
-axis ([0 1 0 1],'tag','rebase');
 plot([0.05 0.95],[0.80 0.80],'k:','tag','rebase');
 hold on;
-plot([0.2 0.2],[0.05 0.901],'k:');
+plot([0.2 0.2],[0.05 0.901],'k:','tag','rebase');
 hold on;
-plot([0.4 0.4],[0.05 0.901],'k:');
+plot([0.4 0.4],[0.05 0.901],'k:','tag','rebase');
 hold on;
-plot([0.6 0.6],[0.05 0.901],'k:');
+plot([0.6 0.6],[0.05 0.901],'k:','tag','rebase');
 hold on;
-plot([0.8 0.8],[0.05 0.901],'k:');
+plot([0.8 0.8],[0.05 0.901],'k:','tag','rebase');
 axis off;
-
 % Tag 1 bis 5 werden in einer Schleife in die figure geladen
 position_counter = 0.02;
 

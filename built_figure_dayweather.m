@@ -83,7 +83,7 @@ for kk = 1:Stunden
         else
            niederschlag = imread('niederschlag2.jpg'); 
         end
-        axes('tag','rebase','Position', [.8 yPosition hohe hohe]); 
+        axes('tag','rebase','Position', [.85 yPosition hohe hohe]); 
         image(niederschlag,'tag','rebase');
         axis image;
         axis off;
