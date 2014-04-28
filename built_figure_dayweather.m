@@ -57,7 +57,7 @@ for kk = 1:Stunden
            text = 'Bewölkt';
         end
         axes('tag','rebase','Position', [.5 yPosition hohe hohe]); 
-        image(wolke);
+        image(wolke,'tag','rebase');
         axis image;
         axis off;
 
@@ -84,7 +84,7 @@ for kk = 1:Stunden
            niederschlag = imread('niederschlag2.jpg'); 
         end
         axes('tag','rebase','Position', [.8 yPosition hohe hohe]); 
-        image(niederschlag);
+        image(niederschlag,'tag','rebase');
         axis image;
         axis off;
    

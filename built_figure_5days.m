@@ -51,7 +51,7 @@ elseif value1 > 20
    thermo = imread('thermometer3.jpg');
 end
 axes('tag','rebase','Position',[position_counter+0.02 0.62 0.03 0.15]); 
-image(thermo);
+image(thermo,'tag','rebase');
 axis image;
 axis off;
 
@@ -92,7 +92,7 @@ elseif value3 >= 75 && value3 <= 100
    font_color = [0 0 1];
 end
 axes('tag','rebase','Position', [position_counter+0.03 0.42 0.1 0.15]); 
-image(wolke);
+image(wolke,'tag','rebase');
 axis image;
 axis off;
 
@@ -116,7 +116,7 @@ else
    niederschlag = imread('niederschlag2.jpg'); 
 end
 axes('tag','rebase','Position', [position_counter+0.03 0.12 0.1 0.15]); 
-image(niederschlag);
+image(niederschlag,'tag','rebase');
 axis image;
 axis off;
 
