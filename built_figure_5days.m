@@ -39,14 +39,18 @@ set(h_text1,'units','normalized','position',[position_counter 0.82 0.16 0.075],.
 
 % Thermometerbild, anhängig von der Maximaltemperatur
 value1 = temp{kk,3};
-if value1 < 10
+if value1 <= 0
    thermo = imread('thermometer1.jpg');
-
-elseif value1 >= 10 && value1 <= 20
+elseif value1 > 0 && value1 < 10
    thermo = imread('thermometer2.jpg');
-
-elseif value1 > 20
+elseif value1 >= 10 && value1 < 15
    thermo = imread('thermometer3.jpg');
+elseif value1 >= 15 && value1 < 20
+   thermo = imread('thermometer4.jpg');
+elseif value1 >= 20 && value1 < 30
+   thermo = imread('thermometer5.jpg');
+elseif value1 > 30
+   thermo = imread('thermometer6.jpg');
 end
 axes('tag','rebase','Position',[position_counter+0.02 0.62 0.03 0.15]); 
 image(thermo,'tag','rebase');
@@ -80,11 +84,9 @@ if value3 >= 0 && value3 < 25
 elseif value3 >= 25 && value3 < 50
    wolke = imread('wolke2.jpg');
    font_color = [0 0.5 1];
-
 elseif value3 >= 50 && value3 < 75
    wolke = imread('wolke3.jpg');
    font_color = [0 0.25 1];
-
 elseif value3 >= 75 && value3 <= 100
    wolke = imread('wolke4.jpg');
    font_color = [0 0 1];
