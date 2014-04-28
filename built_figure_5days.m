@@ -1,7 +1,6 @@
- function [] = built_figure(temp, cloud, prec, weatherdata24)
-% function to built a figure and show weather forecast grafically
-% Usage [] = built_figure(temp, cloud, prec)
-% Input Parameter:
+function [] = built_figure_5days(temp, cloud, prec, weatherdata24)
+% function to built a figure and show weather of next 5 days
+% Usage [out_param] = built_figure_5days(in_param)
 %       temp:  cell-array with the minimal and maximal temperature for the
 %              next ten days
 %       cloud: cell-array with the mean cloudyness for the next ten days
@@ -9,36 +8,10 @@
 %       weatherdata24:  cell-array with 24 rows containing in 4 columns time,
 %                       temperature, cloudiness ,precipitation
 %------------------------------------------------------------------------ 
-%
-% Author: S.Herrmann, J.Klug, M.Nienaber(c) TGM @ Jade Hochschule applied licence see
-% EOF 
+
+% Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied licence see EOF 
 % Version History:
-% Ver. 0.01                  21-Apr-2014                Initials (SH JK MN)
-% Ver. 1.00                  21-Apr-2014                Initials (SH JK MN)
-
-% Erstellen der figure 
-figure_handle = figure();
-set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle',...
-   'off','units','normalized','position',[0.1691 0.1302 0.6991 0.7985],...
-   'ToolBar','none','MenuBar','none','Color',[1 1 1 ]);
-
-set(gca,'position',[0 0 1 1]);   
-axis ([0 1 0 1]);
-plot([0.05 0.95],[0.80 0.80],'k:');
-hold on;
-plot([0.2 0.2],[0.05 0.901],'k:');
-hold on;
-plot([0.4 0.4],[0.05 0.901],'k:');
-hold on;
-plot([0.6 0.6],[0.05 0.901],'k:');
-hold on;
-plot([0.8 0.8],[0.05 0.901],'k:');
-axis off;
-
-h_button = uicontrol(figure_handle,'style','popupmenu','units',...
-'normalized','string',{'Tagesansicht','10 Tagesansicht',...
-'5 Tagesansicht'},'position',[0.13 0.92 0.3 0.05],'BackgroundColor',[1 1 0.5],...
-'FontName','Comic Sans MS','FontSize',12,'callback',{@popup_button,temp,cloud,prec,weatherdata24});
+% Ver. 0.01 initial create        28-Apr-2014  Initials (SH JK MN)
 
 % Tag 1 bis 5 werden in einer Schleife in die figure geladen
 position_counter = 0.02;
@@ -142,9 +115,7 @@ set(h_text5,'units','normalized','position',...
    'string',value4);
 
 position_counter = position_counter + 0.2;
-
 end
-
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Jade University of Applied Sciences 

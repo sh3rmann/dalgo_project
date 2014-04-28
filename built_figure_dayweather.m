@@ -2,6 +2,10 @@ function [] = built_figure_dayweather(temp,cloud,prec,weatherdata24)
 % function to built a figure and show dayweather
 % Usage [] = built_figure_dayweather(weatherdata24)
 % Input Parameter:
+%       temp:  cell-array with the minimal and maximal temperature for the
+%              next ten days
+%       cloud: cell-array with the mean cloudyness for the next ten days
+%       prec:  cell-array with the mean precipitation for the next ten days	
 %       weatherdata24:  cell-array with 24 rows containing in 4 columns time,
 %                       temperature, cloudiness ,precipitation
 %------------------------------------------------------------------------ 

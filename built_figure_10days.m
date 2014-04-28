@@ -1,10 +1,12 @@
 function [] = built_figure_10days(temp,cloud,prec,weatherdata24)
-% function to do something usefull (fill out)
+% function to built a figure and show weather of next 10 days
 % Usage [out_param] = built_figure_10days(in_param)
-% Input Parameter:
-%	 in_param: 		 Explain the parameter, default values, and units
-% Output Parameter:
-%	 out_param: 	 Explain the parameter, default values, and units
+%       temp:  cell-array with the minimal and maximal temperature for the
+%              next ten days
+%       cloud: cell-array with the mean cloudyness for the next ten days
+%       prec:  cell-array with the mean precipitation for the next ten days	
+%       weatherdata24:  cell-array with 24 rows containing in 4 columns time,
+%                       temperature, cloudiness ,precipitation
 %------------------------------------------------------------------------ 
 % Example: Provide example here if applicable (one or two lines) 
 
