@@ -4,16 +4,17 @@
 % EOF 
 % Version History:
 % Ver. 0.01                   14-Apr-2014 			   Initials (SH,JK,MN)
-% Ver. 1.00                   21-Apr-2014 			   Initials (SH,JK,MN)
-% Ver. 1.10                   28-Apr-2014 			   24h Parameter werden auch uebergeben (SH,JK,MN)
+% Ver. 1.00                   28-Apr-2014 			   Initials (SH,JK,MN)
 
 clear;
 close all;
 clc;
+
 tic
 fprintf('Loading data. Please wait...');
 
 [temp, cloud, prec,weather24data] = get_data();
+
 built_figure(temp, cloud, prec,weather24data);
 
 clc;
