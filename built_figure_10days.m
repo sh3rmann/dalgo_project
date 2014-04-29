@@ -43,81 +43,81 @@ axis off;
 
 
 % Tag 1 bis 5 werden in einer Schleife in die figure geladen
-position_counter = 0.01;
+position_counter = 0.102;
 
 for kk = 1:10
 % Wochentag
 [num,name] = weekday(temp{kk,1},'local','long');
 h_text1 = uicontrol('style','text');
-set(h_text1,'units','normalized','position',[position_counter 0.82 0.00001 0.05],...
-   'BackgroundColor',[0 0 1],'tag','rebase',...
-   'FontName','Comic Sans MS','FontSize',2,'string',name);
+set(h_text1,'units','normalized','position',[position_counter 0.81 0.085 0.05],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
+   'FontName','Comic Sans MS','FontSize',11,'string',name);
 
-% Thermometerbild, anhängig von der Maximaltemperatur
-% value1 = temp{kk,3};
-% if value1 < 10
-%    thermo = imread('thermometer1.jpg');
-% 
-% elseif value1 >= 10 && value1 <= 20
-%    thermo = imread('thermometer2.jpg');
-% 
-% elseif value1 > 20
-%    thermo = imread('thermometer3.jpg');
-% end
-% axes('tag','rebase','Position',[position_counter+0.02 0.62 0.03 0.15]); 
-% image(thermo,'tag','rebase');
-% axis image;
-% axis off;
+%Thermometerbild, anhängig von der Maximaltemperatur
+value1 = temp{kk,3};
+if value1 < 10
+   thermo = imread('thermometer1.jpg');
+
+elseif value1 >= 10 && value1 <= 20
+   thermo = imread('thermometer2.jpg');
+
+elseif value1 > 20
+   thermo = imread('thermometer3.jpg');
+end
+axes('tag','rebase','Position',[position_counter+0.01 0.63 0.02 0.1]); 
+image(thermo,'tag','rebase');
+axis image;
+axis off;
 
 % Maximaltemperatur in Grad
-% value1 = num2str(value1);
-% value1 = [value1,'°'];
-% h_text2 = uicontrol('style','text');
-% set(h_text2,'units','normalized','position',[position_counter+0.07 0.69 0.1 0.07],...
-%    'BackgroundColor',[1 1 1],'tag','rebase',...
-%    'FontName','Arial','FontSize',22,'ForegroundColor',[1 0 0],...
-%    'string',value1);
+value1 = num2str(value1);
+value1 = [value1,'°'];
+h_text2 = uicontrol('style','text');
+set(h_text2,'units','normalized','position',[position_counter+0.04 0.68 0.04 0.03],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
+   'FontName','Arial','FontSize',12,'ForegroundColor',[1 0 0],...
+   'string',value1);
 
 % Minimaltemperarur in Grad
-% value2 = num2str(temp{kk,2});
-% value2 = [value2,'°'];
-% h_text3 = uicontrol('style','text');
-% set(h_text3,'units','normalized','position',[position_counter+0.07 0.62 0.1 0.07],...
-%    'BackgroundColor',[1 1 1],'tag','rebase',...
-%    'FontName','Arial','FontSize',22,'ForegroundColor',[0 1 0],...
-%    'string',value2);
+value2 = num2str(temp{kk,2});
+value2 = [value2,'°'];
+h_text3 = uicontrol('style','text');
+set(h_text3,'units','normalized','position',[position_counter+0.04 0.64 0.04 0.03],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
+   'FontName','Arial','FontSize',12,'ForegroundColor',[0 1 0],...
+   'string',value2);
 
 % Wolkenbild, abhängig von der Stärke der Bewölkung
-% value3 = round(cloud{kk,1});
-% if value3 >= 0 && value3 < 25
-%    wolke = imread('wolke1.jpg');
-%    font_color = [0 0.75 1];
-%    
-% elseif value3 >= 25 && value3 < 50
-%    wolke = imread('wolke2.jpg');
-%    font_color = [0 0.5 1];
-% 
-% elseif value3 >= 50 && value3 < 75
-%    wolke = imread('wolke3.jpg');
-%    font_color = [0 0.25 1];
-% 
-% elseif value3 >= 75 && value3 <= 100
-%    wolke = imread('wolke4.jpg');
-%    font_color = [0 0 1];
-% end
-% axes('tag','rebase','Position', [position_counter+0.04 0.42 0.1 0.15]); 
-% image(wolke,'tag','rebase');
-% axis image;
-% axis off;
+value3 = round(cloud{kk,1});
+if value3 >= 0 && value3 < 25
+   wolke = imread('wolke1.jpg');
+   font_color = [0 0.75 1];
+   
+elseif value3 >= 25 && value3 < 50
+   wolke = imread('wolke2.jpg');
+   font_color = [0 0.5 1];
+
+elseif value3 >= 50 && value3 < 75
+   wolke = imread('wolke3.jpg');
+   font_color = [0 0.25 1];
+
+elseif value3 >= 75 && value3 <= 100
+   wolke = imread('wolke4.jpg');
+   font_color = [0 0 1];
+end
+axes('tag','rebase','Position', [position_counter+0.01 0.38 0.06 0.2]); 
+image(wolke,'tag','rebase');
+axis image;
+axis off;
 
 % Bewölkungsgrad in Prozent
-% value3 = num2str(value3);
-% value3 = [value3,'%'];
-% h_text4 = uicontrol('style','text');
-% set(h_text4,'units','normalized','position',[position_counter+0.03 0.33 0.1 0.065],...
-%    'BackgroundColor',[1 1 1],'tag','rebase',...
-%    'FontName','Arial','FontSize',22,'ForegroundColor',font_color,...
-%    'string',value3);
+value3 = num2str(value3);
+value3 = [value3,'%'];
+h_text4 = uicontrol('style','text');
+set(h_text4,'units','normalized','position',[position_counter+0.015 0.34 0.06 0.05],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
+   'FontName','Arial','FontSize',15,'ForegroundColor',font_color,...
+   'string',value3);
 
 % Niederschlagsbild, abhängig von der Niederschlagsmenge
 % if kk >= 4
@@ -143,7 +143,7 @@ set(h_text1,'units','normalized','position',[position_counter 0.82 0.00001 0.05]
 %    'FontName','Arial','FontSize',17,'ForegroundColor',[0.1 0 1],...
 %    'string',value4);
 
-position_counter = position_counter + 0.01;
+position_counter = position_counter + 0.1;
 end
    
    
