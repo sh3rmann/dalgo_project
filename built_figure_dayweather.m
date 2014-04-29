@@ -16,7 +16,7 @@ function [] = built_figure_dayweather(temp,cloud,prec,weatherdata24)
 
 Stunden = length(weatherdata24); % oder 24
 hohe = 0.8/Stunden;
-Uhrzeit = num2str(cell2mat(weatherdata24(1:end,1)));
+Uhrzeit = cell2mat(weatherdata24(1:end,1));
 Temperatur = cell2mat(weatherdata24(1:end,2));
 Wolken = cell2mat(weatherdata24(1:end,3));
 Niederschlag = cell2mat(weatherdata24(1:end,4));
@@ -30,7 +30,7 @@ for kk = 1:Stunden
     h_text1 = uicontrol('style','text');
     set(h_text1,'units','normalized','position',  [0.4 yPosition 0.05 hohe]...
         ,'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','center',...
-       'FontName','Comic Sans MS','FontSize',12,'string',[Uhrzeit(kk,:) ':00']);
+       'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Uhrzeit(kk,:)) ':00']);
     
            
 %     h_text2 = uicontrol('style','text');
@@ -39,16 +39,21 @@ for kk = 1:Stunden
 %        'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Wolken(kk,:)) ' %']);
 
     % Bildauswahl fuer Wolken
+        if Uhrzeit(kk,:) <= 6 || Uhrzeit(kk,:) >= 23
+        filename = 'mond';
+        else
+        filename = 'wolke';
+        end
         if Wolken(kk,:) >= 0 && Wolken(kk) < 25
-           wolke = imread('wolke1.jpg');
+           wolke = imread([filename  '1.jpg']);
            font_color = [0 0.75 1];
            text = 'Klar';
         elseif Wolken(kk) >= 25 && Wolken(kk) < 50
-           wolke = imread('wolke2.jpg');
+           wolke = imread([filename  '2.jpg']);
            font_color = [0 0.5 1];
            text = 'Meist klar';
         elseif Wolken(kk) >= 50 && Wolken(kk) < 75
-           wolke = imread('wolke3.jpg');
+           wolke = imread([filename  '3.jpg']);
            font_color = [0 0.25 1];
            text = 'Teilweise Bewölkt';
         elseif Wolken(kk) >= 75 && Wolken(kk) <= 100

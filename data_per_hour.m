@@ -16,7 +16,7 @@ function [dataPerh] = data_per_hour(time,temp,clouds,rain)
 % Ver. 0.01 initial create (empty) 26-Apr-2014  Initials (SH JK MN)
 
 dataPerh = cell(24,4);
-hour_time = regexp(time(1:24),'T(\d*):', 'tokens', 'once');
+hour_time = regexp(time(2:25),'T(\d*):', 'tokens', 'once');
 
 for kk = 1:24
     dataPerh{kk,1} = str2double(hour_time{kk});
