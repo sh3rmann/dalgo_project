@@ -83,10 +83,14 @@ for kk = 1:Stunden
         
         if Niederschlag(kk,:) == 0 
             niederschlag = [];
-        elseif Niederschlag(kk,:) < 0.4 &&  Niederschlag(kk,:) > 0
-           niederschlag = imread('niederschlag1.jpg');
+        elseif Niederschlag(kk,:) < 0.2 &&  Niederschlag(kk,:) > 0
+           niederschlag = imread('rain2.jpg');
+        elseif Niederschlag(kk,:) < 0.4 &&  Niederschlag(kk,:) > 0.2
+           niederschlag = imread('rain3.jpg'); 
+        elseif Niederschlag(kk,:) < 0.6 &&  Niederschlag(kk,:) > 0.4
+            niederschlag = imread('rain4.jpg'); 
         else
-           niederschlag = imread('niederschlag2.jpg'); 
+            niederschlag = imread('rain5.jpg'); 
         end
         axes('tag','rebase','Position', [.85 yPosition hohe hohe]); 
         image(niederschlag,'tag','rebase');
