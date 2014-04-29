@@ -1,4 +1,4 @@
- function [] = built_figure(temp, cloud, prec, weatherdata24)
+ function [] = built_figure()
 % function to built a figure to show weather forecast grafically
 % Usage [] = built_figure(temp, cloud, prec, weatherdata24)
 % Input Parameter:
@@ -22,14 +22,25 @@ set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle',...
    'off','units','normalized','position',[0.1691 0.1302 0.6991 0.7985],...
    'ToolBar','none','MenuBar','none','Color',[1 1 1 ],'tag','white_figure');
 
-% Erstellen des Buttons1 (Ansicht)
+h_text = uicontrol('style','text');
+set(h_text,'units','normalized','backgroundcolor',[1 1 1],'position',...
+    [0.3 0.45 0.4 0.1],'FontName','Comic Sans MS','FontSize',18,...
+    'string','Loading data. Please wait...');
+
+axis off;
+drawnow;
+
+[temp, cloud, prec,weatherdata24] = get_data();
+
+delete(h_text);
+
+% Erstellen des Buttons
 h_button = uicontrol(figure_handle,'style','popupmenu');
 set(h_button,'units','normalized','string',{'5 Tagesansicht',...
    'Tagesansicht','10 Tagesansicht'},'position',[0.048 0.92 0.3 0.05],...
    'BackgroundColor',[1 1 0.5],'FontName','Comic Sans MS','FontSize',12,...
    'callback',{@popup_button,temp,cloud,prec,weatherdata24});
 
-axis off;
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Jade University of Applied Sciences 

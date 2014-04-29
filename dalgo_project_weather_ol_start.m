@@ -11,11 +11,8 @@ close all;
 clc;
 
 tic
-fprintf('Loading data. Please wait...');
 
-[temp, cloud, prec,weatherdata24] = get_data();
-
-built_figure(temp, cloud, prec,weatherdata24);
+built_figure();
 
 clc;
 toc
