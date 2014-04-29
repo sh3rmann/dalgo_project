@@ -110,10 +110,16 @@ if kk >= 4
    value4 = value4/2;
 end
 value4 = (round(prec{kk,2}*100))/100;
-if value4 < 1.5  
-   niederschlag = imread('niederschlag1.jpg');
+if value4 == 0  
+   niederschlag = imread('rain1.jpg');
+elseif value4 > 0 && value4 < 1
+   niederschlag = imread('rain2.jpg'); 
+elseif value4 >= 1 && value4 < 2
+    niederschlag = imread('rain3.jpg');
+elseif value4 >= 2 && value4 < 3
+    niederschlag = imread('rain4.jpg');
 else
-   niederschlag = imread('niederschlag2.jpg'); 
+    niederschlag = imread('rain5.jpg');
 end
 axes('tag','rebase','Position', [position_counter+0.03 0.12 0.1 0.15]); 
 image(niederschlag,'tag','rebase');
