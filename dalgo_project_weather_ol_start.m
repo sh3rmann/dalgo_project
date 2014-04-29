@@ -13,9 +13,9 @@ clc;
 tic
 fprintf('Loading data. Please wait...');
 
-[temp, cloud, prec,weather24data] = get_data();
+[temp, cloud, prec,weatherdata24] = get_data();
 
-built_figure(temp, cloud, prec,weather24data);
+built_figure(temp, cloud, prec,weatherdata24);
 
 clc;
 toc
