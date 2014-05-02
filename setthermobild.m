@@ -1,4 +1,4 @@
-function [Bewolkung,FontColor] = setthermobild(value1,xPos,yPos,xRange,yRange,varargin)
+function [Bewolkung,FontColor] = setthermobild(value1,xPosyPosxRangeyRange,varargin)
 % Usage [] = setthermobild(value1,xPos,yPos,xRange,yRange)
 %           Plot Thermometerbild, abhängig von der Temperatur
 % Usage [] = setthermobild(value1,xPos,yPos,xRange,yRange,'rain')
@@ -9,11 +9,8 @@ function [Bewolkung,FontColor] = setthermobild(value1,xPos,yPos,xRange,yRange,va
 %           Plot Wolkenbild, abhängig von Wert und Tageszeit
 % Input Parameter:
 %	value1:
-%   xPos:
-%   yPos:
-%   xRange:
-%   yRange:
-%   time:       Stundenwert
+%   xPosyPosxRangeyRange:   Positions und Groessen Parameter
+%   time:                   Stundenwert
 % Output Parameter:
 %   Bewolkung:  String wie 'Bewoeltkt oder 'klar'
 %------------------------------------------------------------------------ 
@@ -21,7 +18,7 @@ function [Bewolkung,FontColor] = setthermobild(value1,xPos,yPos,xRange,yRange,va
 % Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied licence see EOF 
 % Version History:
 % Ver. 0.01 initial create (empty) 02-May-2014  Initials (SH JK MN)
-if nargin == 5
+if nargin == 2
     
         if value1 <= 0
            Wetterbild = imread('thermometer1.jpg');
@@ -37,7 +34,7 @@ if nargin == 5
            Wetterbild = imread('thermometer6.jpg');
         end
  
-elseif nargin == 6 && strcmp(varargin{1},'rain')
+elseif nargin == 3 && strcmp(varargin{1},'rain')
    
     % Niederschlagsbild, abhängig von der Niederschlagsmenge
         if value1 == 0 
@@ -52,9 +49,9 @@ elseif nargin == 6 && strcmp(varargin{1},'rain')
             Wetterbild = imread('rain5.jpg'); 
         end
         
-elseif nargin >= 6 && strcmp(varargin{1},'cloud')        
+elseif nargin >= 3 && strcmp(varargin{1},'cloud')        
         
-        if nargin == 7 && (varargin{2} <= 6 || varargin{2} >= 23)
+        if nargin == 3 && (varargin{2} <= 6 || varargin{2} >= 23)
         filename = 'mond';
         else
         filename = 'wolke';
@@ -79,7 +76,7 @@ elseif nargin >= 6 && strcmp(varargin{1},'cloud')
         end
 else 
 end
-axes('tag','rebase','Position',[xPos yPos xRange yRange]);
+axes('tag','rebase','Position',xPosyPosxRangeyRange);
 image(Wetterbild,'tag','rebase');
 axis image;
 axis off;

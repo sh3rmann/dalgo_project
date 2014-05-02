@@ -40,7 +40,7 @@ set(h_text3,'units','normalized','position',[0.12, 0.73, 0.2, 0.1],...
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Comic Sans MS','FontSize',30,'string',[ num2str(Today(3)) '.' num2str(Today(2)) '.' num2str(Today(1))]);
 
-setthermobild(Hochsttemperatur,0.1, 0.22, 0.1, 0.4);
+setthermobild(Hochsttemperatur,[0.1 0.22 0.1 0.4]);
 
 h_text2 = uicontrol('style','text');
 set(h_text2,'units','normalized','position',[0.2, 0.43, 0.12, 0.1],...
@@ -72,7 +72,7 @@ for kk = 1:Stunden
 %        'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Wolken(kk,:)) ' %']);
 
  % Bildauswahl fuer Wolken
-    [text,font_color] = setthermobild(Wolken(kk),.51, yPosition, hohe, hohe,'cloud',Uhrzeit(kk,:));
+    [text,font_color] = setthermobild(Wolken(kk),[.51 yPosition hohe hohe], 'cloud',Uhrzeit(kk,:));
          
     h_text3 = uicontrol('style','text');
     set(h_text3,'units','normalized','position',[.6 yPosition 0.05 hohe]...
@@ -85,7 +85,7 @@ for kk = 1:Stunden
        'FontName','Comic Sans MS','FontSize',12,'ForegroundColor',font_color,'string',text);    
     
     % Niederschlagsbild, abhängig von der Niederschlagsmenge
-        setthermobild(Niederschlag(kk,:),.85, yPosition, hohe, hohe,'rain');
+        setthermobild(Niederschlag(kk,:),[.85 yPosition hohe hohe],'rain');
    
       h_text5 = uicontrol('style','text');
     set(h_text5,'units','normalized','position',[.88 yPosition 0.07 hohe],...
