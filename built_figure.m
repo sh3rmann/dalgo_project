@@ -41,6 +41,8 @@ set(h_button,'units','normalized','string',{'Tagesansicht',...
    'BackgroundColor',[1 1 0.5],'FontName','Comic Sans MS','FontSize',12,...
    'value',2,'callback',{@popup_button,temp,cloud,prec,weatherdata24});
 
+built_figure_5days(temp,cloud,prec);
+
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Jade University of Applied Sciences 
