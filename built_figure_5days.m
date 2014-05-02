@@ -22,13 +22,10 @@ set(gca,'position',[0 0 1 1]);
 % Plotten der Hintergrundlinien
 plot([0.05 0.95],[0.80 0.80],'k:','tag','rebase');
 hold on;
-plot([0.2 0.2],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.4 0.4],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.6 0.6],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.8 0.8],[0.05 0.901],'k:','tag','rebase');
+for kk = 0.2:0.2:0.8
+    plot([kk kk],[0.05 0.901],'k:','tag','rebase');
+    hold on;
+end
 axis off;
 
 % Tag 1 bis 5 werden in einer Schleife in die figure geladen
@@ -71,7 +68,11 @@ set(h_text4,'units','normalized','position',[position_counter+0.03 0.33 0.1 0.06
    'string', [num2str(value3) '%']);
 
 % Niederschlagsbild, abhängig von der Niederschlagsmenge
-value4 = (round(prec{kk,2}*100))/100;
+if kk < 4
+    value4 = (round(prec{kk,2}*100))/100;
+else
+    value4 = (round(prec{kk,2}*50))/100;
+end
 setthermobild(value4,[position_counter+0.03 0.12 0.1 0.15],'rain');
 
 % Niederschlagswert in mm

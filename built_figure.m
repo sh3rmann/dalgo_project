@@ -1,20 +1,13 @@
  function [] = built_figure()
-% function to built a figure to show weather forecast grafically
-% Usage [] = built_figure(temp, cloud, prec, weatherdata24)
-% Input Parameter:
-%       temp:  cell-array with the minimal and maximal temperature for the
-%              next ten days
-%       cloud: cell-array with the mean cloudyness for the next ten days
-%       prec:  cell-array with the mean precipitation for the next ten days	
-%       weatherdata24:  cell-array with 24 rows containing in 4 columns time,
-%                       temperature, cloudiness ,precipitation
+% function to built a figure to show the weatherforecast grafically
+% Usage [] = built_figure()
 %------------------------------------------------------------------------ 
-%
-% Author: S.Herrmann, J.Klug, M.Nienaber(c) TGM @ Jade Hochschule applied licence see
+% Author: S.Herrmann, J.Klug, M.Nienaber(c) TGM @ Jade Hochschule applied 
+% licence see
 % EOF 
 % Version History:
-% Ver. 0.01                  21-Apr-2014                Initials (SH JK MN)
-% Ver. 1.00                  21-Apr-2014                Initials (SH JK MN)
+% Ver. 0.01 initial create   21-Apr-2014                Initials (SH JK MN)
+% Ver. 1.00                  30-Apr-2014                Initials (SH JK MN)
 
 % Erstellen der figure 
 figure_handle = figure();
@@ -22,19 +15,24 @@ set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle',...
    'off','units','normalized','position',[0.1691 0.1302 0.6991 0.7985],...
    'ToolBar','none','MenuBar','none','Color',[1 1 1 ],'tag','white_figure');
 
+% Erstellen der Warteanzeige
 h_text = uicontrol('style','text');
 set(h_text,'units','normalized','backgroundcolor',[1 1 1],'position',...
     [0.3 0.45 0.4 0.1],'FontName','Comic Sans MS','FontSize',18,...
     'string','Loading data. Please wait...');
 
 axis off;
+
+% Anzeigen der Figure mit Warteanzeige
 drawnow;
 
+% Funktionsaufruf get_data
 [temp, cloud, prec,weatherdata24] = get_data();
 
+% Löschen der Warteanzeige
 delete(h_text);
 
-% Erstellen des Buttons
+% Erstellen des Popupmenue-Buttons
 h_button = uicontrol(figure_handle,'style','popupmenu');
 set(h_button,'units','normalized','string',{'Tagesansicht',...
    '5 Tagesansicht','10 Tagesansicht'},'position',[0.048 0.92 0.3 0.05],...

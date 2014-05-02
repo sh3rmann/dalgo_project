@@ -1,10 +1,10 @@
 function [] = popup_button(handle,event,temp,cloud,prec,weatherdata24)
 % function to do chance the view of the forecast
-% Usage [out_param] = popup_button(temp,cloud,prec)
+% Usage [] = popup_button(temp,cloud,prec,weatherdata24)
 % Input Parameter:
 %       handle: gives the handle from the popupmenue
-%       temp, cloud, prec: transfer the forecast information the other
-%                          views (functions)
+%       temp, cloud, prec weatherdata24: transfer the forecast information 
+%                                        the other views/functions
 
 % Author: S. Herrmann, J. Klug, M. Nienaber (c) TGM @ Jade Hochschule 
 % applied licence see EOF 
@@ -12,10 +12,7 @@ function [] = popup_button(handle,event,temp,cloud,prec,weatherdata24)
 % Ver. 0.01 initial create          27-Apr-2014        Initials (SH JK MN)
 % Ver. 1.00 initial create          28-Apr-2014        Initials (SH JK MN)
 
-
-% Löscht alle vorhandenen Objekte mit dem tag 'rebase' und alle
-% Koordinatensysteme (Bilder)
-% (Textfelder und Bilder)
+% Löscht alle vorhandenen Objekte mit dem tag rebase(Textfelder und Bilder)
 rebase = findobj('tag','rebase');
 delete(rebase);
 
@@ -25,21 +22,19 @@ position = get(handle, 'value');
 
 % Zuordnung der Auswahl zu der entsprechenden Funktion
 
-% 5 Tagesansicht
-if position == 1
-    
-        built_figure_dayweather(weatherdata24)
-                 
 % Tagesansicht
+if position == 1
+       built_figure_dayweather(weatherdata24)
+                 
+% 5 Tagesansicht
 elseif position == 2
-    
-        built_figure_5days(temp,cloud,prec)
+       built_figure_5days(temp,cloud,prec)
         
 % 10 Tagesansicht
 elseif position == 3
-       
        built_figure_10days(temp,cloud,prec)
 end
+
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S. Herrmann, J. Klug, M. Nienaber
 % Jade University of Applied Sciences 

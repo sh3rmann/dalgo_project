@@ -1,14 +1,16 @@
 function [temp_min_max, cloud_mean, prec_mean,weather24hdata] = get_data()
-% function to do load weather data´s from internet
+% function to load the weather informations from the internet
 % Usage [temp_min_max, cloud_mean, prec_mean] = get_data()
 % Output Parameter:
-%        temp_min_max: cell-array with the date the minimal and maximal 
+%      temp_min_max:   cell-array with the date the minimal and maximal 
 %                      temperature
 %                      for the next ten days
-%        cloud_mean:   cell-array with the mean cloudyness for the next ten
+%      cloud_mean:     cell-array with the mean cloudyness for the next ten
 %                      days
-%        prec_mean:    cell-array with the mean precipitation for the next
+%      prec_mean:      cell-array with the mean precipitation for the next
 %                      ten days
+%      weatherdata24:  cell-array with 24 rows containing in 4 columns time,
+%                      temperature, cloudiness ,precipitation
 %------------------------------------------------------------------------ 
 % Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied 
 % licence see 
@@ -65,6 +67,7 @@ end
 datum_full1 = regexp(temp(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
 datum_full2 = regexp(prec(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
 
+% Aufruf der Funktion data_per_hour
 [weather24hdata] = data_per_hour(temp(:,1),temp(:,2),cloud,prec(:,3));
 
 % Alle mehrfach vorhandenen Daten werden hier entfernt
@@ -108,8 +111,8 @@ prec_mean = cell(length(datum2),2);
 % wird. Anmerkung: Niederschlagswerte liegen nicht stündlich -wie Temperatur
 % und Bewökung- vor, sondern in unterschiedlichen Intervallen. Für die 
 % Zuordnung zu den jeweiligen Tagen werden andere Zeilenangaben benötigt. 
-%Um die Übersichtlichkeit zu wahren, findet dieser Arbeitsschritt in einer 
-%gesonderten  Schleife statt
+% Um die Übersichtlichkeit zu wahren, findet dieser Arbeitsschritt in einer 
+% gesonderten  Schleife statt
 for kk = 1:length(datum2)
     
     row1 = ~cellfun(@isempty, regexp(prec(:,1), datum2(kk)));
