@@ -39,6 +39,7 @@ set(h_button,'units','normalized','string',{'Tagesansicht',...
    'BackgroundColor',[1 1 0.5],'FontName','Comic Sans MS','FontSize',12,...
    'value',2,'callback',{@popup_button,temp,cloud,prec,weatherdata24});
 
+% 5Tageansicht wird als Startbildschirm aufgerufen
 built_figure_5days(temp,cloud,prec);
 
 %--------------------Licence ---------------------------------------------

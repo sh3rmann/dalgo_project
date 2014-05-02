@@ -1,7 +1,6 @@
 % Script to show the weatherforecast data from oldenburg
 % Author: S.Herrmann, J.Klug, M.Nienaber (c) IHA @ Jade Hochschule applied 
-% licence see 
-% EOF 
+% licence see EOF 
 % Version History:
 % Ver. 0.01                   14-Apr-2014 			   Initials (SH,JK,MN)
 % Ver. 1.00                   28-Apr-2014 			   Initials (SH,JK,MN)

@@ -80,7 +80,6 @@ axes('tag','rebase','Position',xPosyPosxRangeyRange);
 image(Wetterbild,'tag','rebase');
 axis image;
 axis off;
-
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Jade University of Applied Sciences 

@@ -12,76 +12,86 @@ function [] = built_figure_dayweather(weatherdata24)
 
 Stunden = length(weatherdata24); % oder 24
 hohe = 0.8/Stunden;
+
+% Auslesen des Cell-Arrays
 Uhrzeit = cell2mat(weatherdata24(1:end,1));
 Temperatur = cell2mat(weatherdata24(1:end,2));
 Wolken = cell2mat(weatherdata24(1:end,3));
 Niederschlag = cell2mat(weatherdata24(1:end,4));
-[Uhr23,index23Uhr] = max(Uhrzeit);
-Hochsttemperatur = max(Temperatur(1:index23Uhr));
-Lowesttemperatur = min(Temperatur(1:index23Uhr));
 
 findobj('tag','white_figure');
 
+% Wochentag ausgeben
 [Wochennr,Wochentag] = weekday(date,'local','long');
-
-h_text3 = uicontrol('style','text');
-set(h_text3,'units','normalized','position',[0.12, 0.64, 0.2, 0.1],...
+h_text1 = uicontrol('style','text');
+set(h_text1,'units','normalized','position',[0.12, 0.64, 0.2, 0.1],...
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Comic Sans MS','FontSize',30,'string',Wochentag);
 
+% Datum ausgeben
 Today = clock;
-
-h_text3 = uicontrol('style','text');
-set(h_text3,'units','normalized','position',[0.12, 0.75, 0.2, 0.1],...
+h_text1 = uicontrol('style','text');
+set(h_text1,'units','normalized','position',[0.12, 0.75, 0.2, 0.1],...
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Comic Sans MS','FontSize',30,'string',[ num2str(Today(3)) '.' num2str(Today(2)) '.' num2str(Today(1))]);
-
+% Thermometer mach Wert
 setthermobild(Hochsttemperatur,[0.1 0.22 0.1 0.4]);
 
+% Hochstemperatur
+[Uhr23,index23Uhr] = max(Uhrzeit);
+Hochsttemperatur = max(Temperatur(1:index23Uhr));
 h_text2 = uicontrol('style','text');
 set(h_text2,'units','normalized','position',[0.2, 0.43, 0.15, 0.1],...
    'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
    'FontName','Arial','FontSize',38,'ForegroundColor',[1 0 0],...
    'string',[num2str(Hochsttemperatur) '°']);
 
+% Minimaltemperatur des Tages
+Lowesttemperatur = min(Temperatur(1:index23Uhr));
 h_text3 = uicontrol('style','text');
 set(h_text3,'units','normalized','position',[0.2, 0.3, 0.15, 0.1],...
    'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
    'FontName','Arial','FontSize',38,'ForegroundColor',[0 1 0],...
    'string',[num2str(Lowesttemperatur) '°']);
 
+% Aufbau der Stundendaten
 for kk = 1:Stunden
     
     yPosition = (.9-kk*(0.8/Stunden));
     
-    h_text1 = uicontrol('style','text');
-    set(h_text1,'units','normalized','position',  [0.4 yPosition 0.05 hohe]...
+    % Uhrzeit
+    h_text4 = uicontrol('style','text');
+    set(h_text4,'units','normalized','position',  [0.4 yPosition 0.05 hohe]...
         ,'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
        'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Uhrzeit(kk,:)) ':00']);
-               
-%     h_text2 = uicontrol('style','text');
-%     set(h_text2,'units','normalized','position', [.6 yPosition 0.1 hohe],...
+     
+    % Wolkenanteil in Prozent
+%     h_text5 = uicontrol('style','text');
+%     set(h_text5,'units','normalized','position', [.6 yPosition 0.1 hohe],...
 %        'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
 %        'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Wolken(kk,:)) ' %']);
 
- % Bildauswahl fuer Wolken
+    % Bildauswahl fuer Wolken
     [text,font_color] = setthermobild(Wolken(kk),[.51 yPosition hohe hohe], 'cloud',Uhrzeit(kk,:));
-         
-    h_text3 = uicontrol('style','text');
-    set(h_text3,'units','normalized','position',[.6 yPosition 0.05 hohe]...
+    
+    % Temperatur
+    h_text6 = uicontrol('style','text');
+    set(h_text6,'units','normalized','position',[.6 yPosition 0.05 hohe]...
         ,'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
        'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Temperatur(kk,:)) '°']);    
   
-    h_text4 = uicontrol('style','text');
-    set(h_text4,'units','normalized','position',[.7 yPosition 0.13 hohe],...
+    % Text zu Wolken
+    h_text7 = uicontrol('style','text');
+    set(h_text7,'units','normalized','position',[.7 yPosition 0.13 hohe],...
        'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','left',...
        'FontName','Comic Sans MS','FontSize',12,'ForegroundColor',font_color,'string',text);    
     
     % Niederschlagsbild, abhängig von der Niederschlagsmenge
-        setthermobild(Niederschlag(kk,:),[.85 yPosition hohe hohe],'rain');
+    setthermobild(Niederschlag(kk,:),[.85 yPosition hohe hohe],'rain');
    
-      h_text5 = uicontrol('style','text');
-    set(h_text5,'units','normalized','position',[.88 yPosition 0.07 hohe],...
+    % Niederschlag
+    h_text8 = uicontrol('style','text');
+    set(h_text8,'units','normalized','position',[.88 yPosition 0.07 hohe],...
         'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
        'FontName','Comic Sans MS','FontSize',12,'string',[num2str(Niederschlag(kk,:)) ' mm']);  
 end

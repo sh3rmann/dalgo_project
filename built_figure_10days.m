@@ -39,17 +39,15 @@ set(h_text1,'units','normalized','position',[position_counter 0.81 0.085 0.05],.
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Comic Sans MS','FontSize',11,'string',name);
 
-%Thermometerbild, anhängig von der Maximaltemperatur
+%Thermometerbild, abhängig von der Maximaltemperatur
 setthermobild(temp{kk,3},[position_counter+0.01 0.63 0.02 0.1]); 
 
 % Maximaltemperatur in Grad
-value1 = num2str(temp{kk,3});
-value1 = [value1,'°'];
 h_text2 = uicontrol('style','text');
 set(h_text2,'units','normalized','position',[position_counter+0.04 0.68 0.04 0.03],...
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',12,'ForegroundColor',[1 0 0],...
-   'string',value1);
+   'string',[num2str(temp{kk,3}) '°']);
 
 % Minimaltemperarur in Grad
 value2 = num2str(temp{kk,2});

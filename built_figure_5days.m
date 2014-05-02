@@ -68,7 +68,7 @@ set(h_text4,'units','normalized','position',[position_counter+0.03 0.33 0.1 0.06
    'string', [num2str(value3) '%']);
 
 % Niederschlagsbild, abhängig von der Niederschlagsmenge
-if kk < 4
+if kk < 4           % Ab Tag 4 ander Zeitintervalle, anpassung an Einheit
     value4 = (round(prec{kk,2}*100))/100;
 else
     value4 = (round(prec{kk,2}*50))/100;
@@ -83,7 +83,6 @@ set(h_text5,'units','normalized','position',[position_counter 0.03 0.15 0.075],.
    'string',[num2str(value4) 'mm/3h']);
 
 position_counter = position_counter + 0.2;
-
 end
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber

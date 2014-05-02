@@ -22,7 +22,7 @@ for kk = 1:24
     dataPerh{kk,1} = str2double(hour_time{kk});
     dataPerh{kk,2} = str2double(temp{kk+1});
     dataPerh{kk,3} = str2double(clouds{kk+1});
-    dataPerh{kk,4} = str2double(rain{((kk-1)*4)+9});
+    dataPerh{kk,4} = str2double(rain{((kk-1)*4)+9});    % Andere Sortierung der Niederschlagswerte
 end
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
