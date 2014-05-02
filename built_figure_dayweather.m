@@ -19,6 +19,11 @@ Temperatur = cell2mat(weatherdata24(1:end,2));
 Wolken = cell2mat(weatherdata24(1:end,3));
 Niederschlag = cell2mat(weatherdata24(1:end,4));
 
+% Hochst und Niedrigsttemperatur
+[Uhr23,index23Uhr] = max(Uhrzeit);
+Hochsttemperatur = max(Temperatur(1:index23Uhr));
+Lowesttemperatur = min(Temperatur(1:index23Uhr));
+
 findobj('tag','white_figure');
 
 % Wochentag ausgeben
@@ -38,8 +43,6 @@ set(h_text1,'units','normalized','position',[0.12, 0.75, 0.2, 0.1],...
 setthermobild(Hochsttemperatur,[0.1 0.22 0.1 0.4]);
 
 % Hochstemperatur
-[Uhr23,index23Uhr] = max(Uhrzeit);
-Hochsttemperatur = max(Temperatur(1:index23Uhr));
 h_text2 = uicontrol('style','text');
 set(h_text2,'units','normalized','position',[0.2, 0.43, 0.15, 0.1],...
    'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
@@ -47,7 +50,6 @@ set(h_text2,'units','normalized','position',[0.2, 0.43, 0.15, 0.1],...
    'string',[num2str(Hochsttemperatur) '°']);
 
 % Minimaltemperatur des Tages
-Lowesttemperatur = min(Temperatur(1:index23Uhr));
 h_text3 = uicontrol('style','text');
 set(h_text3,'units','normalized','position',[0.2, 0.3, 0.15, 0.1],...
    'BackgroundColor',[1 1 1],'tag','rebase','HorizontalAlignment','right',...
