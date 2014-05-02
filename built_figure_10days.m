@@ -5,17 +5,13 @@ function [] = built_figure_10days(temp,cloud,prec)
 %              next ten days
 %       cloud: cell-array with the mean cloudyness for the next ten days
 %       prec:  cell-array with the mean precipitation for the next ten days	
-
 %------------------------------------------------------------------------ 
-% Example: Provide example here if applicable (one or two lines) 
 
 % Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied 
 % licence see EOF 
 % Version History:
 % Ver. 0.01 initial create (empty) 28-Apr-2014  Initials (SH JK MN)
 % Ver. 1.0                         02-Mai-2014  Initials (SH JK MN)
-
-
 
 %suchen der figure
 findobj('tag','white_figure');
@@ -26,31 +22,17 @@ set(gca,'position',[0 0 1 1]);
 %Plotten der Hintergrundlinien
 plot([0.01 0.99],[0.80 0.80],'k:','tag','rebase');
 hold on;
-plot([0.1 0.1],[0.05 0.901],'k:','tag','rebase');
+for kk = .1:.1:.9
+plot([kk kk],[0.05 0.901],'k:','tag','rebase');
 hold on;
-plot([0.2 0.2],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.3 0.3],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.4 0.4],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.5 0.5],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.6 0.6],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.7 0.7],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.8 0.8],[0.05 0.901],'k:','tag','rebase');
-hold on;
-plot([0.9 0.9],[0.05 0.901],'k:','tag','rebase');
-axis off;
-
+end
+axis off; 
 
 % Tag 1 bis 5 werden in einer Schleife in die figure geladen
 position_counter = 0.002;
 
 for kk = 1:10
-% Wochentag
+ % Wochentag
 [num,name] = weekday(temp{kk,1},'local','long');
 h_text1 = uicontrol('style','text');
 set(h_text1,'units','normalized','position',[position_counter 0.81 0.085 0.05],...
@@ -82,7 +64,6 @@ set(h_text3,'units','normalized','position',[position_counter+0.04 0.64 0.04 0.0
 value3 = round(cloud{kk,1});
 [Text,font_color]= setthermobild(value3,[position_counter+0.01 0.38 0.06 0.2],'cloud'); 
 
-
 % Bewölkungsgrad in Prozent
 value3 = num2str(value3);
 value3 = [value3,'%'];
@@ -96,24 +77,19 @@ set(h_text4,'units','normalized','position',[position_counter+0.015 0.34 0.06 0.
 if kk< 4
     value4 = (round(prec{kk,2}*100))/100;
 else
-    value4 = (round(prec{kk,2}*100))/200;
+    value4 = (round(prec{kk,2}*50))/100;
 end
 setthermobild(value4,[position_counter+0.01 0.12 0.06 0.2],'rain');
 
 % Niederschlagswert in mm
-value4 = num2str(value4);
-value4 = [value4,'mm/3h'];
 h_text5 = uicontrol('style','text');
 set(h_text5,'units','normalized','position',[position_counter+0.01 0.07 0.07 0.06],...
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',10,'ForegroundColor',[0.1 0 1],...
-   'string',value4);
+   'string',[num2str(value4) 'mm/3h']);
 
 position_counter = position_counter + 0.1;
 end
-   
-   
-
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Jade University of Applied Sciences 

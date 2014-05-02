@@ -2,10 +2,10 @@ function [dataPerh] = data_per_hour(time,temp,clouds,rain)
 % function to extract next 24 hour datas from weatherinfo
 % Usage [dataPerh] = data_per_hour(time,temp,clouds,rain)
 % Input Parameter:
-%	time: 		Explain the parameter, default values, and units
-%   temp: 
-%   clouds:
-%   rain:
+%	time: 		cell-array with dates
+%   temp:       cell-array with temperatures
+%   clouds:     cell-array with cloudyness
+%   rain:       cell-array with precipitation
 % Output Parameter:
 %	 dataPerh: 	cell-array with 24 rows containing in 4 columns time,
 %               temperature, cloudiness ,precipitation
