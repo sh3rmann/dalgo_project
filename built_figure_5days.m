@@ -1,21 +1,25 @@
 function [] = built_figure_5days(temp, cloud, prec)
-% function to built a figure and show weather of next 5 days
-% Usage [out_param] = built_figure_5days(in_param)
+% function to show weatherforecast of next 5 days
+% Usage [] = built_figure_5days(temp, cloud, prec)
 %       temp:  cell-array with the minimal and maximal temperature for the
 %              next ten days
 %       cloud: cell-array with the mean cloudyness for the next ten days
 %       prec:  cell-array with the mean precipitation for the next ten days	
-%       weatherdata24:  cell-array with 24 rows containing in 4 columns time,
-%                       temperature, cloudiness ,precipitation
 %------------------------------------------------------------------------ 
 
-% Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied licence see EOF 
+% Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied 
+% licence see EOF 
 % Version History:
-% Ver. 0.01 initial create        28-Apr-2014  Initials (SH JK MN)
+% Ver. 0.01 initial create        28-Apr-2014           Initials (SH JK MN)
+% Ver. 1.00                       02-Mai-2014           Initials (SH JK MN)
 
+% Suchen der figure
 findobj('tag','white_figure');
+
+% Setzt das Koordinatensystem an den linken, unteren Rand
 set(gca,'position',[0 0 1 1]); 
-axis ([0 1 0 1]);
+
+% Plotten der Hintergrundlinien
 plot([0.05 0.95],[0.80 0.80],'k:','tag','rebase');
 hold on;
 plot([0.2 0.2],[0.05 0.901],'k:','tag','rebase');
@@ -26,6 +30,7 @@ plot([0.6 0.6],[0.05 0.901],'k:','tag','rebase');
 hold on;
 plot([0.8 0.8],[0.05 0.901],'k:','tag','rebase');
 axis off;
+
 % Tag 1 bis 5 werden in einer Schleife in die figure geladen
 position_counter = 0.02;
 
@@ -38,7 +43,7 @@ set(h_text1,'units','normalized','position',[position_counter 0.82 0.16 0.075],.
    'FontName','Comic Sans MS','FontSize',20,'string',name);
 
 % Thermometerbild, abhängig von der Maximaltemperatur
-setthermobild(temp{kk,3},position_counter+0.02, 0.62, 0.03, 0.15);
+setthermobild(temp{kk,3},[position_counter+0.02 0.62 0.03 0.15]);
 
 % Maximaltemperarur in Grad
 h_text2 = uicontrol('style','text');
@@ -56,7 +61,7 @@ set(h_text3,'units','normalized','position',[position_counter+0.07 0.62 0.1 0.07
 
 % Wolkenbild, abhängig von der Stärke der Bewölkung
 value3 = round(cloud{kk,1});
-[Text,font_color]= setthermobild(value3,position_counter+0.03, 0.42, 0.1, 0.15,'cloud');
+[Text,font_color]= setthermobild(value3,[position_counter+0.03 0.42 0.1 0.15],'cloud');
 
 % Bewölkungsgrad in Prozent
 h_text4 = uicontrol('style','text');
@@ -67,7 +72,7 @@ set(h_text4,'units','normalized','position',[position_counter+0.03 0.33 0.1 0.06
 
 % Niederschlagsbild, abhängig von der Niederschlagsmenge
 value4 = (round(prec{kk,2}*100))/100;
-setthermobild(value4,position_counter+0.03, 0.12, 0.1, 0.15,'rain');
+setthermobild(value4,[position_counter+0.03 0.12 0.1 0.15],'rain');
 
 % Niederschlagswert in mm
 h_text5 = uicontrol('style','text');
@@ -77,6 +82,7 @@ set(h_text5,'units','normalized','position',[position_counter 0.03 0.15 0.075],.
    'string',[num2str(value4) 'mm/3h']);
 
 position_counter = position_counter + 0.2;
+
 end
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
