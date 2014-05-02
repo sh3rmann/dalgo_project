@@ -1,4 +1,4 @@
-function [] = built_figure_5days(temp, cloud, prec, weatherdata24)
+function [] = built_figure_5days(temp, cloud, prec)
 % function to built a figure and show weather of next 5 days
 % Usage [out_param] = built_figure_5days(in_param)
 %       temp:  cell-array with the minimal and maximal temperature for the
