@@ -1,25 +1,29 @@
 function [] = built_figure_10days(temp,cloud,prec)
-% function to built a figure and show weather of next 10 days
-% Usage [out_param] = built_figure_10days(in_param)
+% function to show weatherforecast of next 10 days
+% Usage [out_param] = built_figure_10days(temp,cloud,prec)
 %       temp:  cell-array with the minimal and maximal temperature for the
 %              next ten days
 %       cloud: cell-array with the mean cloudyness for the next ten days
 %       prec:  cell-array with the mean precipitation for the next ten days	
-%       weatherdata24:  cell-array with 24 rows containing in 4 columns time,
-%                       temperature, cloudiness ,precipitation
+
 %------------------------------------------------------------------------ 
 % Example: Provide example here if applicable (one or two lines) 
 
-% Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied licence see EOF 
+% Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied 
+% licence see EOF 
 % Version History:
 % Ver. 0.01 initial create (empty) 28-Apr-2014  Initials (SH JK MN)
+% Ver. 1.0                         02-Mai-2014  Initials (SH JK MN)
 
 
+
+%suchen der figure
 findobj('tag','white_figure');
 
-
+%setzt das Koordinatensystem an den linken, unteren Rand
 set(gca,'position',[0 0 1 1]);   
-axis ([0 1 0 1]);
+
+%Plotten der Hintergrundlinien
 plot([0.01 0.99],[0.80 0.80],'k:','tag','rebase');
 hold on;
 plot([0.1 0.1],[0.05 0.901],'k:','tag','rebase');
@@ -54,7 +58,7 @@ set(h_text1,'units','normalized','position',[position_counter 0.81 0.085 0.05],.
    'FontName','Comic Sans MS','FontSize',11,'string',name);
 
 %Thermometerbild, anhängig von der Maximaltemperatur
-setthermobild(temp{kk,3},position_counter+0.01, 0.63, 0.02, 0.1); 
+setthermobild(temp{kk,3},[position_counter+0.01 0.63 0.02 0.1]); 
 
 % Maximaltemperatur in Grad
 value1 = num2str(temp{kk,3});
@@ -76,7 +80,7 @@ set(h_text3,'units','normalized','position',[position_counter+0.04 0.64 0.04 0.0
 
 % Wolkenbild, abhängig von der Stärke der Bewölkung
 value3 = round(cloud{kk,1});
-[Text,font_color]= setthermobild(value3,position_counter+0.01, 0.38, 0.06, 0.2,'cloud'); 
+[Text,font_color]= setthermobild(value3,[position_counter+0.01 0.38 0.06 0.2],'cloud'); 
 
 
 % Bewölkungsgrad in Prozent
@@ -90,7 +94,7 @@ set(h_text4,'units','normalized','position',[position_counter+0.015 0.34 0.06 0.
 
 % Niederschlagsbild, abhängig von der Niederschlagsmenge
 value4 = (round(prec{kk,2}*100))/100;
-setthermobild(value4,position_counter+0.01, 0.12, 0.06, 0.2,'rain');
+setthermobild(value4,[position_counter+0.01 0.12 0.06 0.2],'rain');
 
 % Niederschlagswert in mm
 value4 = num2str(value4);
