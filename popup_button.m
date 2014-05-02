@@ -33,12 +33,12 @@ if position == 1
 % Tagesansicht
 elseif position == 2
     
-        built_figure_5days(temp,cloud,prec,weatherdata24)
+        built_figure_5days(temp,cloud,prec)
         
 % 10 Tagesansicht
 elseif position == 3
        
-       built_figure_10days(temp,cloud,prec,weatherdata24)
+       built_figure_10days(temp,cloud,prec)
 end
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S. Herrmann, J. Klug, M. Nienaber
