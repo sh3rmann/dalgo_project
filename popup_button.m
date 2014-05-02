@@ -13,7 +13,8 @@ function [] = popup_button(handle,event,temp,cloud,prec,weatherdata24)
 % Ver. 1.00 initial create          28-Apr-2014        Initials (SH JK MN)
 
 
-% Löscht alle vorhandenen Objekte mit dem tag 'rebase'
+% Löscht alle vorhandenen Objekte mit dem tag 'rebase' und alle
+% Koordinatensysteme (Bilder)
 % (Textfelder und Bilder)
 rebase = findobj('tag','rebase');
 delete(rebase);
@@ -24,20 +25,20 @@ position = get(handle, 'value');
 
 % Zuordnung der Auswahl zu der entsprechenden Funktion
 
-% Tagesansicht
+% 5 Tagesansicht
 if position == 1
-
-        built_figure_dayweather(temp,cloud,prec,weatherdata24)  
-        
-% 10 Tagesansicht
+    
+        built_figure_5days(temp,cloud,prec,weatherdata24)
+                
+% Tagesansicht
 elseif position == 2
     
-        built_figure_10days(temp,cloud,prec,weatherdata24)
+        built_figure_dayweather(weatherdata24)
         
-% 5 Tagesansicht
+% 10 Tagesansicht
 elseif position == 3
        
-       built_figure_5days(temp,cloud,prec,weatherdata24)
+       built_figure_10days(temp,cloud,prec,weatherdata24)
 end
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S. Herrmann, J. Klug, M. Nienaber
