@@ -1,7 +1,6 @@
-﻿<dalgo_project 'Wetherforecast'>
-
+﻿dalgo_project 'Wetherforecast'
 =
-Autoren: Sven Herrmann, Jonas Klug , Marit Nienaber >
+Autoren: Sven Herrmann, Jonas Klug , Marit Nienaber  
 Abgabetermin: 09.05.2014
 
 =
