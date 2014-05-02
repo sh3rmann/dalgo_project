@@ -1,21 +1,23 @@
 function [temp_min_max, cloud_mean, prec_mean,weather24hdata] = get_data()
-% function to do load weather data´s from internet
+% function to load weatherforecast from the internet
 % Usage [temp_min_max, cloud_mean, prec_mean] = get_data()
 % Output Parameter:
-%        temp_min_max: cell-array with the date the minimal and maximal 
-%                      temperature
-%                      for the next ten days
-%        cloud_mean:   cell-array with the mean cloudyness for the next ten
-%                      days
-%        prec_mean:    cell-array with the mean precipitation for the next
-%                      ten days
+%        temp_min_max:  cell-array with the date the minimal and maximal 
+%                       temperature
+%                       for the next ten days
+%        cloud_mean:    cell-array with the mean cloudyness for the next ten
+%                       days
+%        prec_mean:     cell-array with the mean precipitation for the next
+%                       ten days
+%        weather24hdata:cell-array with the temperature, cloudyness and
+%                       the precision for the next 24 hours
 %------------------------------------------------------------------------ 
 % Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied 
 % licence see 
 % EOF 
 % Version History:
 % Ver. 0.01                  14-Apr-2014                Initials (SH,JK,MN)
-% Ver. 1.0                   20-Apr-2014                Initials (SH,JK,MN)
+% Ver. 1.00                  20-Apr-2014                Initials (SH,JK,MN)
 
 % Herunterladen der Wetterdaten aus dem Internet
 urlwrite ('http://api.met.no/weatherapi/locationforecast/1.8/?lat=53.143889;lon=8.213889','data.xml'); 
