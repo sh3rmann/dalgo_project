@@ -28,12 +28,12 @@ position = get(handle, 'value');
 % 5 Tagesansicht
 if position == 1
     
-        built_figure_5days(temp,cloud,prec,weatherdata24)
-                
+        built_figure_dayweather(weatherdata24)
+                 
 % Tagesansicht
 elseif position == 2
     
-        built_figure_dayweather(weatherdata24)
+        built_figure_5days(temp,cloud,prec,weatherdata24)
         
 % 10 Tagesansicht
 elseif position == 3
