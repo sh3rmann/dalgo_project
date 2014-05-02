@@ -1,4 +1,4 @@
-% Script to show the weather data from oldenburg
+% Script to show the weatherforecast data from oldenburg
 % Author: S.Herrmann, J.Klug, M.Nienaber (c) IHA @ Jade Hochschule applied 
 % licence see 
 % EOF 
@@ -10,12 +10,8 @@ clear;
 close all;
 clc;
 
-tic
-
 built_figure();
 
-clc;
-toc
 %--------------------Licence ---------------------------------------------
 % Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
 % Institute for Hearing Technology and Audiology

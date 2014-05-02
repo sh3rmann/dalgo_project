@@ -93,7 +93,11 @@ set(h_text4,'units','normalized','position',[position_counter+0.015 0.34 0.06 0.
    'string',value3);
 
 % Niederschlagsbild, abhängig von der Niederschlagsmenge
-value4 = (round(prec{kk,2}*100))/100;
+if kk< 4
+    value4 = (round(prec{kk,2}*100))/100;
+else
+    value4 = (round(prec{kk,2}*100))/200;
+end
 setthermobild(value4,[position_counter+0.01 0.12 0.06 0.2],'rain');
 
 % Niederschlagswert in mm
