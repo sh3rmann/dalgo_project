@@ -3,9 +3,9 @@ function [Bewolkung,FontColor] = setthermobild(value1,xPos,yPos,xRange,yRange,va
 %           Plot Thermometerbild, abhängig von der Temperatur
 % Usage [] = setthermobild(value1,xPos,yPos,xRange,yRange,'rain')
 %           Plot Niederschlagsbild, abhängig vom Niederschlagswert
-% Usage [Bewolkung] = setthermobild(value1,xPos,yPos,xRange,yRange,'cloud')
+% Usage [Bewolkung,FontColor] = setthermobild(value1,xPos,yPos,xRange,yRange,'cloud')
 %           Plot Wolkenbild, abhängig von Wert
-% Usage [Bewolkung] = setthermobild(value1,xPos,yPos,xRange,yRange,'cloud',time)
+% Usage [Bewolkung,FontColor] = setthermobild(value1,xPos,yPos,xRange,yRange,'cloud',time)
 %           Plot Wolkenbild, abhängig von Wert und Tageszeit
 % Input Parameter:
 %	value1:
@@ -15,7 +15,7 @@ function [Bewolkung,FontColor] = setthermobild(value1,xPos,yPos,xRange,yRange,va
 %   yRange:
 %   time:       Stundenwert
 % Output Parameter:
-%   Bewolkung:  String wie 'Bewoelt# oder 'klar'
+%   Bewolkung:  String wie 'Bewoeltkt oder 'klar'
 %------------------------------------------------------------------------ 
 
 % Author: S.Herrmann, J.Klug, M.Nienaber (c) TGM @ Jade Hochschule applied licence see EOF 
