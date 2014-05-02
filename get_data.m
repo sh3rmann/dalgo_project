@@ -67,8 +67,12 @@ end
 datum_full1 = regexp(temp(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
 datum_full2 = regexp(prec(:,1),'[0-9]+-[0-9]+-[0-9]+','match');
 
+<<<<<<< HEAD
 % Aufruf der Funktion data_per_hour
 [weather24hdata] = data_per_hour(temp(:,1),temp(:,2),cloud,prec(:,3));
+=======
+[weather24hdata] = data_per_hour(temp(1:25,1),temp(1:25,2),cloud,prec(1:101,3));
+>>>>>>> 6d75a9687527657a03fd289857aaebe74712b25d
 
 % Alle mehrfach vorhandenen Daten werden hier entfernt
 datum1 = unique(vertcat(datum_full1{:}));
