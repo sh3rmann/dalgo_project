@@ -7,7 +7,6 @@ Abgabetermin: 09.05.2014
 Um das Programm *Wetherforecast* zu benutzen muss eine Version von Matlab (min 2013) zur Verfügung stehen. Damit wird das
 Main-Skript 'dalgo_projekt_wether_ol_start.m' geöffnet und gestartet (Run).
 
-
 =============
 
 Für das Vertiefungsfach Daten und Algorithmik wurde mit Matlab ein Programm geschrieben, dass die Wetterdaten aus dem 
