@@ -33,7 +33,7 @@ if position == 1
 % Tagesansicht
 elseif position == 2
     
-        built_figure_dayweather(temp,cloud,prec,weatherdata24)
+        built_figure_dayweather(weatherdata24)
         
 % 10 Tagesansicht
 elseif position == 3

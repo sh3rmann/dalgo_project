@@ -37,103 +37,44 @@ set(h_text1,'units','normalized','position',[position_counter 0.82 0.16 0.075],.
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Comic Sans MS','FontSize',20,'string',name);
 
-% Thermometerbild, anhängig von der Maximaltemperatur
-value1 = temp{kk,3};
-if value1 <= 0
-   thermo = imread('thermometer1.jpg');
-elseif value1 > 0 && value1 < 10
-   thermo = imread('thermometer2.jpg');
-elseif value1 >= 10 && value1 < 15
-   thermo = imread('thermometer3.jpg');
-elseif value1 >= 15 && value1 < 20
-   thermo = imread('thermometer4.jpg');
-elseif value1 >= 20 && value1 < 30
-   thermo = imread('thermometer5.jpg');
-elseif value1 > 30
-   thermo = imread('thermometer6.jpg');
-end
-axes('tag','rebase','Position',[position_counter+0.02 0.62 0.03 0.15]); 
-image(thermo,'tag','rebase');
-axis image;
-axis off;
+% Thermometerbild, abhängig von der Maximaltemperatur
+setthermobild(temp{kk,3},position_counter+0.02, 0.62, 0.03, 0.15);
 
-% Maximaltemperatur in Grad
-value1 = num2str(value1);
-value1 = [value1,'°'];
+% Maximaltemperarur in Grad
 h_text2 = uicontrol('style','text');
 set(h_text2,'units','normalized','position',[position_counter+0.07 0.69 0.1 0.07],...
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',22,'ForegroundColor',[1 0 0],...
-   'string',value1);
+   'string',[num2str(temp{kk,3}) '°']);
 
 % Minimaltemperarur in Grad
-value2 = num2str(temp{kk,2});
-value2 = [value2,'°'];
 h_text3 = uicontrol('style','text');
 set(h_text3,'units','normalized','position',[position_counter+0.07 0.62 0.1 0.07],...
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',22,'ForegroundColor',[0 1 0],...
-   'string',value2);
+   'string',[num2str(temp{kk,2}) '°']);
 
 % Wolkenbild, abhängig von der Stärke der Bewölkung
 value3 = round(cloud{kk,1});
-if value3 >= 0 && value3 < 25
-   wolke = imread('wolke1.jpg');
-   font_color = [0 0.75 1];
-   
-elseif value3 >= 25 && value3 < 50
-   wolke = imread('wolke2.jpg');
-   font_color = [0 0.5 1];
-elseif value3 >= 50 && value3 < 75
-   wolke = imread('wolke3.jpg');
-   font_color = [0 0.25 1];
-elseif value3 >= 75 && value3 <= 100
-   wolke = imread('wolke4.jpg');
-   font_color = [0 0 1];
-end
-axes('tag','rebase','Position', [position_counter+0.03 0.42 0.1 0.15]); 
-image(wolke,'tag','rebase');
-axis image;
-axis off;
+[Text,font_color]= setthermobild(value3,position_counter+0.03, 0.42, 0.1, 0.15,'cloud');
 
 % Bewölkungsgrad in Prozent
-value3 = num2str(value3);
-value3 = [value3,'%'];
 h_text4 = uicontrol('style','text');
 set(h_text4,'units','normalized','position',[position_counter+0.03 0.33 0.1 0.065],...
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',22,'ForegroundColor',font_color,...
-   'string',value3);
+   'string', [num2str(value3) '%']);
 
 % Niederschlagsbild, abhängig von der Niederschlagsmenge
-if kk >= 4
-   value4 = value4/2;
-end
 value4 = (round(prec{kk,2}*100))/100;
-if value4 == 0  
-   niederschlag = imread('rain1.jpg');
-elseif value4 > 0 && value4 < 1
-   niederschlag = imread('rain2.jpg'); 
-elseif value4 >= 1 && value4 < 2
-    niederschlag = imread('rain3.jpg');
-elseif value4 >= 2 && value4 < 3
-    niederschlag = imread('rain4.jpg');
-else
-    niederschlag = imread('rain5.jpg');
-end
-axes('tag','rebase','Position', [position_counter+0.03 0.12 0.1 0.15]); 
-image(niederschlag,'tag','rebase');
-axis image;
-axis off;
+setthermobild(value4,position_counter+0.03, 0.12, 0.1, 0.15,'rain');
 
 % Niederschlagswert in mm
-value4 = num2str(value4);
-value4 = [value4,'mm/3h'];
 h_text5 = uicontrol('style','text');
 set(h_text5,'units','normalized','position',[position_counter 0.03 0.15 0.075],...
    'BackgroundColor',[1 1 1],'tag','rebase',...
    'FontName','Arial','FontSize',17,'ForegroundColor',[0.1 0 1],...
-   'string',value4);
+   'string',[num2str(value4) 'mm/3h']);
 
 position_counter = position_counter + 0.2;
 end
