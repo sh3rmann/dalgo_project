@@ -1,4 +1,4 @@
-function [] = built_figure_10days(temp,cloud,prec,weatherdata24)
+function [] = built_figure_10days(temp,cloud,prec)
 % function to built a figure and show weather of next 10 days
 % Usage [out_param] = built_figure_10days(in_param)
 %       temp:  cell-array with the minimal and maximal temperature for the
@@ -43,7 +43,7 @@ axis off;
 
 
 % Tag 1 bis 5 werden in einer Schleife in die figure geladen
-position_counter = 0.102;
+position_counter = 0.002;
 
 for kk = 1:10
 % Wochentag
@@ -54,23 +54,10 @@ set(h_text1,'units','normalized','position',[position_counter 0.81 0.085 0.05],.
    'FontName','Comic Sans MS','FontSize',11,'string',name);
 
 %Thermometerbild, anhängig von der Maximaltemperatur
-value1 = temp{kk,3};
-if value1 < 10
-   thermo = imread('thermometer1.jpg');
-
-elseif value1 >= 10 && value1 <= 20
-   thermo = imread('thermometer2.jpg');
-
-elseif value1 > 20
-   thermo = imread('thermometer3.jpg');
-end
-axes('tag','rebase','Position',[position_counter+0.01 0.63 0.02 0.1]); 
-image(thermo,'tag','rebase');
-axis image;
-axis off;
+setthermobild(temp{kk,3},position_counter+0.01, 0.63, 0.02, 0.1); 
 
 % Maximaltemperatur in Grad
-value1 = num2str(value1);
+value1 = num2str(temp{kk,3});
 value1 = [value1,'°'];
 h_text2 = uicontrol('style','text');
 set(h_text2,'units','normalized','position',[position_counter+0.04 0.68 0.04 0.03],...
@@ -89,26 +76,8 @@ set(h_text3,'units','normalized','position',[position_counter+0.04 0.64 0.04 0.0
 
 % Wolkenbild, abhängig von der Stärke der Bewölkung
 value3 = round(cloud{kk,1});
-if value3 >= 0 && value3 < 25
-   wolke = imread('wolke1.jpg');
-   font_color = [0 0.75 1];
-   
-elseif value3 >= 25 && value3 < 50
-   wolke = imread('wolke2.jpg');
-   font_color = [0 0.5 1];
+[Text,font_color]= setthermobild(value3,position_counter+0.01, 0.38, 0.06, 0.2,'cloud'); 
 
-elseif value3 >= 50 && value3 < 75
-   wolke = imread('wolke3.jpg');
-   font_color = [0 0.25 1];
-
-elseif value3 >= 75 && value3 <= 100
-   wolke = imread('wolke4.jpg');
-   font_color = [0 0 1];
-end
-axes('tag','rebase','Position', [position_counter+0.01 0.38 0.06 0.2]); 
-image(wolke,'tag','rebase');
-axis image;
-axis off;
 
 % Bewölkungsgrad in Prozent
 value3 = num2str(value3);
@@ -120,28 +89,17 @@ set(h_text4,'units','normalized','position',[position_counter+0.015 0.34 0.06 0.
    'string',value3);
 
 % Niederschlagsbild, abhängig von der Niederschlagsmenge
-% if kk >= 4
-%    value4 = value4/2;
-% end
-% value4 = (round(prec{kk,2}*100))/100;
-% if value4 < 1.5  
-%    niederschlag = imread('niederschlag1.jpg');
-% else
-%    niederschlag = imread('niederschlag2.jpg'); 
-% end
-% axes('tag','rebase','Position', [position_counter+0.03 0.12 0.1 0.15]); 
-% image(niederschlag,'tag','rebase');
-% axis image;
-% axis off;
+value4 = (round(prec{kk,2}*100))/100;
+setthermobild(value4,position_counter+0.01, 0.12, 0.06, 0.2,'rain');
 
 % Niederschlagswert in mm
-% value4 = num2str(value4);
-% value4 = [value4,'mm/3h'];
-% h_text5 = uicontrol('style','text');
-% set(h_text5,'units','normalized','position',[position_counter 0.03 0.15 0.075],...
-%    'BackgroundColor',[1 1 1],'tag','rebase',...
-%    'FontName','Arial','FontSize',17,'ForegroundColor',[0.1 0 1],...
-%    'string',value4);
+value4 = num2str(value4);
+value4 = [value4,'mm/3h'];
+h_text5 = uicontrol('style','text');
+set(h_text5,'units','normalized','position',[position_counter+0.01 0.07 0.07 0.06],...
+   'BackgroundColor',[1 1 1],'tag','rebase',...
+   'FontName','Arial','FontSize',10,'ForegroundColor',[0.1 0 1],...
+   'string',value4);
 
 position_counter = position_counter + 0.1;
 end
