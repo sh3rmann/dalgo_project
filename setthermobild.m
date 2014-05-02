@@ -51,7 +51,7 @@ elseif nargin == 3 && strcmp(varargin{1},'rain')
         
 elseif nargin >= 3 && strcmp(varargin{1},'cloud')        
         
-        if nargin == 3 && (varargin{2} <= 6 || varargin{2} >= 23)
+        if nargin == 4 && (varargin{2} <= 6 || varargin{2} >= 23)
         filename = 'mond';
         else
         filename = 'wolke';
