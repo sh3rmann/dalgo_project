@@ -16,9 +16,23 @@ set(figure_handle,'Name','Weatherdata from Oldenburg','NumberTitle',...
    'ToolBar','none','MenuBar','none','Color',[1 1 1 ],'tag','white_figure');
 
 % Erstellen der Warteanzeige
-h_text = uicontrol('style','text');
-set(h_text,'units','normalized','backgroundcolor',[1 1 1],'position',...
-    [0.3 0.45 0.4 0.1],'FontName','Comic Sans MS','FontSize',18,...
+
+
+
+h_text1 = uicontrol('style','text');
+set(h_text1,'units','normalized','backgroundcolor',[1 1 1],'position',...
+    [0.125 0.826 0.75 0.15],'FontName','Comic Sans MS','tag','rebase','FontSize',38,...
+    'string','Weatherdata Oldenburg');
+
+Wetterbild = imread('wolke2.jpg');
+axes('tag','rebase','Position',[.7 .5 .3 .3]);
+image(Wetterbild,'tag','rebase');
+axis image;
+axis off;
+
+h_text2 = uicontrol('style','text');
+set(h_text2,'units','normalized','backgroundcolor',[1 1 1],'position',...
+    [0.3 0.45 0.4 0.1],'FontName','Comic Sans MS','tag','rebase','FontSize',18,...
     'string','Loading data. Please wait...');
 
 axis off;
@@ -30,7 +44,8 @@ drawnow;
 [temp, cloud, prec,weatherdata24] = get_data();
 
 % Löschen der Warteanzeige
-delete(h_text);
+delete(findobj('tag','rebase'));
+
 
 % Erstellen des Popupmenue-Buttons
 h_button = uicontrol(figure_handle,'style','popupmenu');
