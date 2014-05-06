@@ -77,7 +77,7 @@ if kk< 4
 else
     value4 = (round(prec{kk,2}*50))/100;
 end
-setthermobild(value4,[position_counter+0.01 0.12 0.06 0.2],'rain');
+setthermobild(value4,[position_counter+0.01 0.12 0.06 0.2],'rain',3);
 
 % Niederschlagswert in mm
 h_text5 = uicontrol('style','text');

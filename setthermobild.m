@@ -34,16 +34,21 @@ if nargin == 2
            Wetterbild = imread('thermometer6.jpg');
         end
  
-elseif nargin == 3 && strcmp(varargin{1},'rain')
+elseif nargin >= 3 && strcmp(varargin{1},'rain')
    
+        if nargin == 3 
+        varargin(2) = {1};  
+        end 
+        Regengrenzen = [.2 .4 .6 ; .3 .7 1.2 ; .5 1.0 1.5];
     % Niederschlagsbild, abhängig von der Niederschlagsmenge
+            
         if value1 == 0 
             Wetterbild = imread('rain1.jpg');
-        elseif value1 < 0.2 &&  value1 > 0
+        elseif value1 <= Regengrenzen(varargin{2},1) &&  value1 > 0
            Wetterbild = imread('rain2.jpg');
-        elseif value1 < 0.4 &&  value1 > 0.2
+        elseif value1 <= Regengrenzen(varargin{2},2) &&  value1 > Regengrenzen(varargin{2},1)
            Wetterbild = imread('rain3.jpg'); 
-        elseif value1 < 0.6 &&  value1 > 0.4
+        elseif value1 <= Regengrenzen(varargin{2},3) &&  value1 > Regengrenzen(varargin{2},2)
             Wetterbild = imread('rain4.jpg'); 
         else
             Wetterbild = imread('rain5.jpg'); 

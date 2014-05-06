@@ -73,7 +73,7 @@ if kk < 4           % Ab Tag 4 ander Zeitintervalle, anpassung an Einheit
 else
     value4 = (round(prec{kk,2}*50))/100;
 end
-setthermobild(value4,[position_counter+0.03 0.12 0.1 0.15],'rain');
+setthermobild(value4,[position_counter+0.03 0.12 0.1 0.15],'rain',3);
 
 % Niederschlagswert in mm
 h_text5 = uicontrol('style','text');
