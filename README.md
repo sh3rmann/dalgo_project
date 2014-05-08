@@ -1,6 +1,10 @@
 ﻿dalgo_project 'Wetherforecast'
 =
-Autoren: Sven Herrmann, Jonas Klug , Marit Nienaber  
+Autoren: 
+Sven Herrmann (6004940), sven.herrmann@student.jade-hs.de
+Jonas Klug (600....), jonas.klug@student.jade-hs.de
+Marit Nienaber (6004990),  marit.nienaber@student.jade-hs.de
+
 Abgabetermin: 09.05.2014
 
 =
@@ -20,3 +24,6 @@ Main-Skript und 10 Funktionen. Eine dieser (parse_xml.m) wurde dabei von Bastian
 =
 
 
+Copyright (c) <2014> S.Herrmann, J.Klug, M.Nienaber
+Institute for Hearing Technology and Audiology
+Jade University of Applied Sciences
