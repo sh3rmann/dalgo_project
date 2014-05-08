@@ -2,7 +2,7 @@
 =
 Autoren: 
 Sven Herrmann (6004940), sven.herrmann@student.jade-hs.de
-Jonas Klug (600....), jonas.klug@student.jade-hs.de
+Jonas Klug (6004903), jonas.klug@student.jade-hs.de
 Marit Nienaber (6004990),  marit.nienaber@student.jade-hs.de
 
 Abgabetermin: 09.05.2014
